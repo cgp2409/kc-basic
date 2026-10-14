@@ -1,0 +1,47 @@
+{
+  "_info": "Banco de frases de KC Basic. El formulario guarda el ID, no el texto. Corregir una frase aquí la corrige en todas las invitaciones al regenerarlas.",
+  "invitacion": {
+    "xv-inv-01": "Hay momentos que imaginamos, soñamos y esperamos. Hoy uno de ellos se hace realidad y quiero vivirlo contigo.",
+    "xv-inv-02": "Con la bendición de Dios y el amor de mis padres, te invito a celebrar mis quince años.",
+    "xv-inv-03": "Con mucha alegría, mis papás y yo te invitamos a celebrar mis 15 años, un día muy especial que quiero compartir contigo.",
+    "xv-inv-04": "Quince años de risas, aprendizajes y sueños. Me encantaría que celebraras esta nueva etapa conmigo.",
+    "xv-inv-05": "Has sido parte de mi historia, por eso quiero que estés en uno de sus días más importantes: mis XV años."
+  },
+  "cita": {
+    "cita-jer-29-11": {
+      "texto": "Porque yo sé los pensamientos que tengo acerca de vosotros, dice Jehová, pensamientos de paz, y no de mal, para daros el fin que esperáis.",
+      "autor": "Jeremías 29:11"
+    },
+    "cita-kc-01": {
+      "texto": "Los sueños no tienen edad, pero hoy los míos cumplen quince.",
+      "autor": ""
+    },
+    "cita-kc-02": {
+      "texto": "Brilla con tu voz y sueña con el corazón.",
+      "autor": ""
+    }
+  },
+  "reglas": {
+    "puntual": "Llega puntual: la magia empieza a tiempo.",
+    "fotos": "Toma muchas fotos: esta noche es para recordar.",
+    "bailar": "Baila sin pena y disfruta cada canción.",
+    "disfrutar": "Diviértete al máximo, esta noche es para celebrar.",
+    "no_aburrirse": "Regla de oro: no aburrirse."
+  },
+  "politica": {
+    "solo_adultos": "Para disfrutar al máximo, la celebración es solo para adultos.",
+    "jovenes_adultos": "Este evento está pensado para jóvenes y adultos.",
+    "ninos_supervisados": "Si vienes con niños, te pedimos que estén acompañados en los momentos especiales: vals, brindis y pastel.",
+    "sin_mascotas": "No se permite el ingreso de mascotas."
+  },
+  "cierre": {
+    "cierre-01": "Será una noche inolvidable y me encantaría contar con tu presencia.",
+    "cierre-02": "Tu presencia es el mejor regalo. ¡Te espero!",
+    "cierre-03": "Nos vemos para celebrar juntos este gran día."
+  },
+  "regalos": {
+    "lluvia_sobres": "Tu presencia es lo más importante. Si deseas tener un detalle, habrá lluvia de sobres.",
+    "mesa_regalos": "Tu presencia es lo más importante. Si deseas tener un detalle, aquí está mi mesa de regalos.",
+    "presencia": "Tu presencia es el mejor regalo."
+  }
+}

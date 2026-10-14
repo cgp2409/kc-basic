@@ -1,0 +1,25 @@
+{
+  "slug": "xv-sara-2612",
+  "tipo": "xv",
+  "plantilla": "xv-moderna-poster",
+  "tema": "lila-minimal",
+  "idioma": "es",
+  "pais": "MX",
+  "con_fotos": false,
+  "fecha": "2026-12-05",
+  "despublicar": "2026-12-10",
+  "portada": { "nombres": ["Sara"] },
+  "mensaje": { "frase_id": null, "texto_propio": "Quince años de sueños cumplidos y los que faltan. Acompáñame a celebrarlos." },
+  "familia": { "padres": ["Claudia Reyes"], "padrinos": [] },
+  "momentos": [
+    { "tipo": "recepcion", "lugar": "Jardín Las Palmas", "direccion": "Av. Central 229", "hora": "18:00", "mapa": "https://maps.app.goo.gl/ejemplo3" }
+  ],
+  "vestimenta": { "nivel": "semiformal", "colores_reservados": ["lila", "morado"], "nota": "Mujeres en tonos pastel." },
+  "regalos": { "tipo": "presencia", "link": null },
+  "reglas": ["puntual", "no_aburrirse"],
+  "politica": [],
+  "galeria": [],
+  "confirmacion": { "metodo": "enlace", "whatsapp": null, "link": "https://forms.gle/ejemplo", "fecha_limite": "2026-11-25" },
+  "cierre": { "frase_id": "cierre-03" },
+  "addons": []
+}

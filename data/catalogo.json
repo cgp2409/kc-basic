@@ -1,0 +1,36 @@
+{
+  "_info": "Qué plantillas y temas existen, qué secciones soporta cada plantilla y en qué orden. El archivo del evento nunca decide el orden.",
+  "plantillas": {
+    "xv-moderna-poster": {
+      "tipo": "xv",
+      "estado": "piloto",
+      "secciones": ["portada", "mensaje", "cuenta_regresiva", "familia", "cita", "momentos", "vestimenta", "regalos", "reglas", "politica", "galeria", "hashtag", "confirmacion", "cierre"],
+      "galeria_formato": "carrusel",
+      "temas": ["noche-dorada", "rosa-neon", "lila-minimal"]
+    },
+    "xv-moderna-galeria": {
+      "tipo": "xv",
+      "estado": "pendiente",
+      "secciones": ["portada", "cuenta_regresiva", "mensaje", "galeria", "momentos", "vestimenta", "regalos", "politica", "hashtag", "confirmacion", "cierre"],
+      "galeria_formato": "collage",
+      "temas": []
+    },
+    "boda-moderna-editorial": {
+      "tipo": "boda",
+      "estado": "pendiente",
+      "secciones": ["portada", "mensaje", "familia", "cita", "momentos", "vestimenta", "regalos", "reglas", "politica", "galeria", "hashtag", "confirmacion", "cierre"],
+      "galeria_formato": "galeria",
+      "temas": []
+    },
+    "boda-moderna-minimal": {
+      "tipo": "boda",
+      "estado": "pendiente",
+      "secciones": ["portada", "cuenta_regresiva", "mensaje", "momentos", "vestimenta", "regalos", "galeria", "confirmacion", "cierre"],
+      "galeria_formato": "galeria",
+      "temas": []
+    }
+  },
+  "colores_reservables": ["blanco", "beige", "dorado", "plateado", "negro", "rojo", "vinotinto", "rosado", "fucsia", "lila", "morado", "azul", "azul claro", "verde", "verde menta", "amarillo", "naranja", "gris"],
+  "vestimenta_niveles": ["etiqueta", "formal", "semiformal", "casual", "tematico"],
+  "momento_tipos": ["misa", "ceremonia", "civil", "recepcion"]
+}
