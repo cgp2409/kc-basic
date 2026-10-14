@@ -344,6 +344,8 @@ button { font: inherit; color: inherit; }
 .cierre-arte { margin: 0 0 2rem; width: 9rem; color: var(--acento); }
 .firma { margin: 1.75rem 0 0; font-size: clamp(2.2rem, 11vw, 3.4rem); color: var(--acento); text-shadow: var(--brillo); }
 .pie { padding: 2.5rem 0 6rem; text-align: center; color: var(--tinta-suave); font-size: .85rem; border-top: 1px solid var(--linea); }
+.pie p { margin: 0; }
+.pie .creditos { margin-top: .5rem; font-size: .8rem; opacity: .8; }
 .pie a { text-decoration-color: var(--linea); text-underline-offset: 3px; }
 
 /* ---------- Movimiento ---------- */

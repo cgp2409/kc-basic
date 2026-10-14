@@ -8,25 +8,82 @@
   "con_fotos": true,
   "fecha": "2026-11-14",
   "despublicar": "2026-11-19",
-  "portada": { "nombres": ["Ana Sofía"], "foto": "portada.jpg" },
-  "secundaria": { "foto": "secundaria.jpg" },
-  "mensaje": { "frase_id": "xv-inv-03", "texto_propio": null },
-  "familia": {
-    "padres": ["Laura Gómez", "Andrés Pérez"],
-    "padrinos": ["Marta Gómez y Julián Ríos"]
+  "portada": {
+    "nombres": [
+      "Ana Sofía"
+    ],
+    "foto": "ana-portada.jpg"
   },
-  "cita": { "frase_id": "cita-kc-01" },
+  "mensaje": {
+    "frase_id": "xv-inv-03",
+    "texto_propio": null
+  },
+  "familia": {
+    "padres": [
+      "Laura Gómez",
+      "Andrés Pérez"
+    ],
+    "padrinos": [
+      "Marta Gómez y Julián Ríos"
+    ]
+  },
+  "cita": {
+    "frase_id": "cita-kc-01"
+  },
   "momentos": [
-    { "tipo": "misa", "lugar": "Parroquia San José", "direccion": "Cra 5 # 10-20, Neiva", "hora": "16:00", "mapa": "https://maps.app.goo.gl/ejemplo1" },
-    { "tipo": "recepcion", "lugar": "Salón Los Almendros", "direccion": "Km 3 vía Rivera", "hora": "19:00", "mapa": "https://maps.app.goo.gl/ejemplo2" }
+    {
+      "tipo": "misa",
+      "lugar": "Parroquia San José",
+      "direccion": "Cra 5 # 10-20, Neiva",
+      "hora": "16:00",
+      "mapa": "https://maps.app.goo.gl/ejemplo1"
+    },
+    {
+      "tipo": "recepcion",
+      "lugar": "Salón Los Almendros",
+      "direccion": "Km 3 vía Rivera",
+      "hora": "19:00",
+      "mapa": "https://maps.app.goo.gl/ejemplo2"
+    }
   ],
-  "vestimenta": { "nivel": "formal", "colores_reservados": ["dorado", "negro"], "nota": null },
-  "regalos": { "tipo": "lluvia_sobres", "link": null },
-  "reglas": ["puntual", "fotos", "bailar"],
-  "politica": ["jovenes_adultos", "sin_mascotas"],
-  "galeria": ["g1.jpg", "g2.jpg", "g3.jpg"],
+  "vestimenta": {
+    "nivel": "formal",
+    "colores_reservados": [
+      "dorado",
+      "negro"
+    ],
+    "nota": null
+  },
+  "regalos": {
+    "tipo": "lluvia_sobres",
+    "link": null
+  },
+  "reglas": [
+    "puntual",
+    "fotos",
+    "bailar"
+  ],
+  "politica": [
+    "jovenes_adultos",
+    "sin_mascotas"
+  ],
+  "galeria": [
+    "ana-g1.jpg",
+    "ana-g2.jpg",
+    "ana-g3.jpg",
+    "ana-g4.jpg"
+  ],
   "hashtag": "#AnaXV",
-  "confirmacion": { "metodo": "whatsapp", "whatsapp": "+57 300 000 0000", "link": null, "fecha_limite": "2026-11-01" },
-  "cierre": { "frase_id": "cierre-01", "foto": "cierre.jpg" },
-  "addons": []
+  "confirmacion": {
+    "metodo": "whatsapp",
+    "whatsapp": "+57 300 000 0000",
+    "link": null,
+    "fecha_limite": "2026-11-01"
+  },
+  "cierre": {
+    "frase_id": "cierre-01",
+    "foto": "ana-cierre.jpg"
+  },
+  "addons": [],
+  "creditos_fotos": "Quinces Perfectos"
 }
