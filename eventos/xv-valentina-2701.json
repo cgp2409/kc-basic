@@ -1,0 +1,26 @@
+{
+  "slug": "xv-valentina-2701",
+  "tipo": "xv",
+  "plantilla": "xv-moderna-poster",
+  "tema": "rosa-neon",
+  "idioma": "es",
+  "pais": "CO",
+  "con_fotos": false,
+  "fecha": "2027-01-23",
+  "despublicar": "2027-01-28",
+  "portada": { "nombres": ["Valentina"] },
+  "mensaje": { "frase_id": "xv-inv-04" },
+  "familia": { "padres": ["Diana Castro", "Mauricio León"], "padrinos": ["Paola Castro"] },
+  "momentos": [
+    { "tipo": "recepcion", "lugar": "Club Los Lagos", "direccion": "Calle 8 # 12-40, Garzón", "hora": "20:00", "mapa": "https://maps.app.goo.gl/ejemplo4" }
+  ],
+  "vestimenta": { "nivel": "etiqueta", "colores_reservados": ["fucsia", "plateado"], "nota": null },
+  "regalos": { "tipo": "lluvia_sobres" },
+  "reglas": ["puntual", "fotos", "bailar", "no_aburrirse"],
+  "politica": ["jovenes_adultos"],
+  "galeria": [],
+  "hashtag": "#ValeXV",
+  "confirmacion": { "metodo": "whatsapp", "whatsapp": "+57 311 000 0000", "fecha_limite": "2027-01-10" },
+  "cierre": { "frase_id": "cierre-02" },
+  "addons": []
+}

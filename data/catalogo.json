@@ -3,7 +3,7 @@
   "plantillas": {
     "xv-moderna-poster": {
       "tipo": "xv",
-      "estado": "piloto",
+      "estado": "lista",
       "secciones": ["portada", "mensaje", "cuenta_regresiva", "familia", "cita", "momentos", "vestimenta", "regalos", "reglas", "politica", "galeria", "hashtag", "confirmacion", "cierre"],
       "galeria_formato": "carrusel",
       "temas": ["noche-dorada", "rosa-neon", "lila-minimal"]
@@ -30,7 +30,18 @@
       "temas": []
     }
   },
+  "temas": {
+    "noche-dorada": { "nombre": "Noche dorada", "fondo": "#141A33", "tinta": "#F3ECDD", "acento": "#D9B56A", "og_display": "fraunces-latin-600-normal.woff", "og_mayusculas": false },
+    "rosa-neon": { "nombre": "Rosa neón", "fondo": "#22081F", "tinta": "#FFEFF7", "acento": "#FF3D8B", "og_display": "big-shoulders-display-latin-800-normal.woff", "og_mayusculas": true },
+    "lila-minimal": { "nombre": "Lila minimal", "fondo": "#EEE8F7", "tinta": "#2A1E45", "acento": "#7D5FC4", "og_display": "instrument-serif-latin-400-normal.woff", "og_mayusculas": false }
+  },
   "colores_reservables": ["blanco", "beige", "dorado", "plateado", "negro", "rojo", "vinotinto", "rosado", "fucsia", "lila", "morado", "azul", "azul claro", "verde", "verde menta", "amarillo", "naranja", "gris"],
+  "colores_hex": {
+    "blanco": "#FFFFFF", "beige": "#E8D9BF", "dorado": "#D4AF37", "plateado": "#C0C4CC", "negro": "#1A1A1A",
+    "rojo": "#C8102E", "vinotinto": "#6D1A2B", "rosado": "#F4A6C0", "fucsia": "#E0217A", "lila": "#C8A2E8",
+    "morado": "#6B2FA3", "azul": "#1F4FB2", "azul claro": "#8EC3F0", "verde": "#2E7D4F", "verde menta": "#A8E6CF",
+    "amarillo": "#F5D547", "naranja": "#F28C28", "gris": "#8A8F98"
+  },
   "vestimenta_niveles": ["etiqueta", "formal", "semiformal", "casual", "tematico"],
   "momento_tipos": ["misa", "ceremonia", "civil", "recepcion"]
 }

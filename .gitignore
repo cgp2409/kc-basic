@@ -1,4 +1,6 @@
 __pycache__/
 *.pyc
 dist/
+fotos/
+invitados/
 .DS_Store
