@@ -53,6 +53,11 @@ FUENTES_TEMA = {
     "rosa-neon": [("Big Shoulders Display", "big-shoulders-display-latin-wght-normal.woff2", "100 900")],
     "lila-minimal": [("Instrument Serif", "instrument-serif-latin-400-normal.woff2", "400")],
 }
+CLASICA = [("Pinyon Script", "pinyon-script-latin-400-normal.woff2", "400", "normal"),
+           ("Cormorant Garamond", "cormorant-garamond-latin-wght-normal.woff2", "300 700", "normal"),
+           ("Cormorant Garamond", "cormorant-garamond-latin-wght-italic.woff2", "300 700", "italic")]
+for _t in ("marfil-dorado", "cielo-plata", "rosa-palo"):
+    FUENTES_TEMA[_t] = CLASICA
 FUENTE_TEXTO = ("Figtree", "figtree-latin-wght-normal.woff2", "300 900")
 
 
@@ -177,14 +182,15 @@ def imagen_og(ev, tema, nombre, fecha):
 
     # Nombre, ajustado al ancho disponible
     texto = nombre.upper() if mayus else nombre
+    disp_nombre = str(FUENTES / "og" / tema.get("og_nombre", tema["og_display"]))
     tam = 150
     while tam > 60:
-        f = ImageFont.truetype(disp, tam)
+        f = ImageFont.truetype(disp_nombre, tam)
         if d.textlength(texto, font=f) <= max_nombre:
             break
         tam -= 6
     d.text((70, 300), texto, font=f, fill=tinta, anchor="ls")
-    cuerpo = ImageFont.truetype(str(FUENTES / "og" / "fraunces-latin-500-normal.woff"), 36)
+    cuerpo = ImageFont.truetype(str(FUENTES / "og" / tema.get("og_cuerpo", "fraunces-latin-500-normal.woff")), 36)
     d.text((72, 380), "Mis XV años", font=cuerpo, fill=acento)
     d.text((72, 440), fecha["larga"], font=cuerpo, fill=tinta)
     buf = io.BytesIO()
@@ -252,11 +258,15 @@ def construir(ev, fotos_dir, autonomo, demo, para_demo=None, cupos_demo=None):
 
     # Fuentes
     css_fuentes, precarga = [], []
-    for familia_f, archivo, peso in FUENTES_TEMA[ev["tema"]] + [FUENTE_TEXTO]:
+    lista_f = FUENTES_TEMA[ev["tema"]]
+    if CATALOGO["plantillas"][ev["plantilla"]].get("fuente_texto", True):
+        lista_f = lista_f + [FUENTE_TEXTO]
+    for familia_f, archivo, peso, *estilo in lista_f:
+        estilo = estilo[0] if estilo else "normal"
         ruta = FUENTES / archivo
         url = data_uri(ruta.read_bytes(), "font/woff2") if autonomo else f"../assets/fuentes/{archivo}"
         css_fuentes.append(f'@font-face{{font-family:"{familia_f}";src:url("{url}") format("woff2");'
-                           f'font-weight:{peso};font-style:normal;font-display:swap}}')
+                           f'font-weight:{peso};font-style:{estilo};font-display:swap}}')
         if not autonomo:
             precarga.append(url)
 
@@ -270,6 +280,7 @@ def construir(ev, fotos_dir, autonomo, demo, para_demo=None, cupos_demo=None):
     ctx = {
         "ev": ev, "tema": tema, "nombre": nombre,
         "nombre_corto": nombre.split()[0],
+        "inicial": nombre[0].upper(),
         "nombre_letras": [list(p) for p in nombre.split()],
         "fecha": fecha, "textos": textos, "momentos": momentos, "familia": familia,
         "vestimenta": vestimenta, "regalos": regalos,

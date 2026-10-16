@@ -1,0 +1,76 @@
+{
+  "slug": "xv-mariana-2702",
+  "tipo": "xv",
+  "plantilla": "xv-clasica-elegante",
+  "tema": "marfil-dorado",
+  "idioma": "es",
+  "pais": "CO",
+  "con_fotos": false,
+  "fecha": "2027-02-20",
+  "despublicar": "2027-02-25",
+  "portada": {
+    "nombres": [
+      "Mariana"
+    ]
+  },
+  "mensaje": {
+    "frase_id": "xv-inv-05",
+    "texto_propio": null
+  },
+  "familia": {
+    "padres": [
+      "Sandra Milena Ortiz",
+      "Jorge Iván Ramírez"
+    ],
+    "padrinos": [
+      "Beatriz Ortiz"
+    ]
+  },
+  "cita": {
+    "frase_id": "cita-kc-02"
+  },
+  "momentos": [
+    {
+      "tipo": "ceremonia",
+      "lugar": "Capilla Santa Bárbara",
+      "direccion": "Calle 8 # 4-15, Garzón",
+      "hora": "18:00",
+      "mapa": "https://maps.app.goo.gl/ejemplo7"
+    },
+    {
+      "tipo": "recepcion",
+      "lugar": "Club Campestre",
+      "direccion": "Vía Garzón–Altamira km 2",
+      "hora": "20:30",
+      "mapa": "https://maps.app.goo.gl/ejemplo8"
+    }
+  ],
+  "vestimenta": {
+    "nivel": "formal",
+    "colores_reservados": [
+      "dorado",
+      "beige"
+    ],
+    "nota": null
+  },
+  "regalos": {
+    "tipo": "mesa_regalos",
+    "link": "https://www.falabella.com.co/"
+  },
+  "reglas": [],
+  "politica": [
+    "ninos_supervisados"
+  ],
+  "galeria": [],
+  "hashtag": "#MarianaXV",
+  "confirmacion": {
+    "metodo": "enlace",
+    "whatsapp": null,
+    "link": "https://forms.gle/ejemplo",
+    "fecha_limite": "2027-02-05"
+  },
+  "cierre": {
+    "frase_id": "cierre-03"
+  },
+  "addons": []
+}

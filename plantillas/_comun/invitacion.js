@@ -70,8 +70,12 @@
         return;
       }
       telon.classList.add("abriendo");
-      setTimeout(animarPortada, 350);
-      telon.addEventListener("animationend", function () { telon.remove(); }, { once: true });
+      setTimeout(animarPortada, parseInt(telon.getAttribute("data-retardo"), 10) || 350);
+      telon.addEventListener("animationend", function fin(e) {
+        if (e.target !== telon) return;
+        telon.removeEventListener("animationend", fin);
+        telon.remove();
+      });
     });
     document.body.style.overflow = "hidden";
   } else {

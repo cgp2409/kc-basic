@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="{{ ev.idioma }}" data-tema="{{ ev.tema }}" class="{{ 'con-fotos' if ev.con_fotos else 'sin-fotos' }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="{{ tema.fondo }}">
+<link rel="icon" href="data:image/svg+xml,{{ favicon|urlencode }}">
+<title>Mis XV años: {{ nombre }}</title>
+<meta name="description" content="{{ fecha.larga }}. {{ textos.mensaje|truncate(140) }}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mis XV años: {{ nombre }}">
+<meta property="og:description" content="{{ fecha.larga }}. Toca para abrir tu invitación.">
+{% if og_url %}<meta property="og:image" content="{{ og_url }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">{% endif %}
+<meta property="og:url" content="{{ url }}">
+<script>document.documentElement.classList.add("js");if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("anima");</script>
+{% for f in fuentes_precarga %}<link rel="preload" href="{{ f }}" as="font" type="font/woff2" crossorigin>
+{% endfor %}<style>
+{{ css_fuentes|safe }}
+{{ css|safe }}
+</style>
+</head>
+<body>
+{#- Adornos reutilizables -#}
+{% macro filigrana(clase="filigrana") -%}
+<svg class="{{ clase }}" viewBox="0 0 240 28" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+  <path d="M120 4 l6 10 -6 10 -6 -10z" fill="currentColor" stroke="none"/>
+  {% set mitad %}<path d="M108 14 C 96 14 92 4 82 6 C 74 8 76 18 84 18 C 90 18 90 11 86 10"/>
+    <path d="M82 6 C 66 2 52 14 30 14 L 6 14"/>
+    <circle cx="4" cy="14" r="1.6" fill="currentColor" stroke="none"/>
+    <path d="M60 11 C 56 6 50 6 47 9" opacity=".7"/>{% endset %}
+  <g>{{ mitad }}</g>
+  <g transform="matrix(-1 0 0 1 240 0)">{{ mitad }}</g>
+</svg>
+{%- endmacro %}
+{% macro corona(letra) -%}
+<svg class="corona" viewBox="0 0 200 200" aria-hidden="true">
+  <g fill="none" stroke="currentColor" stroke-width=".9">
+    <circle cx="100" cy="100" r="56" opacity=".5"/>
+    <circle cx="100" cy="100" r="52" stroke-dasharray="1 4" opacity=".7"/>
+  </g>
+  <circle cx="100" cy="100" r="72" fill="none" stroke="currentColor" stroke-width="1.1" stroke-dasharray="188.5 37.7" transform="rotate(105 100 100)"/>
+  {% for i in range(12) %}{% set t = 198 + i * 12 %}
+  <g transform="rotate({{ t }} 100 100) translate(100 28)" fill="currentColor"><path d="M0 0 C 5 -3 7 -10 3 -15 C -2 -10 -2 -4 0 0z" transform="rotate(58)"/><path d="M0 0 C 5 -3 7 -10 3 -15 C -2 -10 -2 -4 0 0z" transform="rotate(122) scale(.85)" opacity=".8"/></g>
+  <g transform="rotate({{ 360 - t }} 100 100) translate(100 28)" fill="currentColor"><path d="M0 0 C -5 -3 -7 -10 -3 -15 C 2 -10 2 -4 0 0z" transform="rotate(-58)"/><path d="M0 0 C -5 -3 -7 -10 -3 -15 C 2 -10 2 -4 0 0z" transform="rotate(-122) scale(.85)" opacity=".8"/></g>
+  {% endfor %}
+  <path d="M100 178 l4 -6 -4 -6 -4 6z" fill="currentColor"/>
+  <text x="100" y="122" text-anchor="middle" class="corona-letra" fill="currentColor">{{ letra }}</text>
+</svg>
+{%- endmacro %}
+
+<div class="telon" id="telon" role="dialog" aria-modal="true" aria-labelledby="telon-nombre" data-retardo="1500">
+  <div class="telon-caja">
+    <p class="telon-para" data-para hidden>Para <strong></strong></p>
+    <div class="sobre" aria-hidden="true">
+      <div class="sobre-fondo"></div>
+      <div class="sobre-carta"><span class="sobre-carta-xv">XV</span></div>
+      <div class="sobre-frente"></div>
+      <div class="sobre-solapa"></div>
+      <div class="sello"><span>{{ inicial }}</span></div>
+    </div>
+    <p class="telon-nombre" id="telon-nombre">{{ nombre }}</p>
+    <p class="telon-sub">Mis XV años · {{ fecha.dia }} de {{ fecha.mes }}</p>
+    <button class="boton" id="abrir" type="button">Abrir invitación</button>
+  </div>
+</div>
+
+<main>
+<header class="portada" id="inicio">
+  <div class="portada-fondo">
+    {% if fotos.portada %}
+    <div class="arco"><img src="{{ fotos.portada }}" alt="{{ nombre }}" fetchpriority="high"></div>
+    {% else %}
+    {{ corona(inicial) }}
+    {% endif %}
+  </div>
+  <div class="portada-texto">
+    <p class="para" data-para hidden>Esta invitación es para <strong></strong></p>
+    <p class="antetitulo">Mis</p>
+    <svg class="xv" viewBox="0 0 300 150" aria-hidden="true"><text x="150" y="128" text-anchor="middle" font-size="150">XV</text></svg>
+    <p class="antetitulo">años</p>
+    <h1 class="nombre" aria-label="{{ nombre }}">{% for palabra in nombre_letras %}<span class="palabra" aria-hidden="true">{% for l in palabra %}<span class="letra">{{ l }}</span>{% endfor %}</span>{% if not loop.last %} {% endif %}{% endfor %}</h1>
+    <div class="fecha-portada">
+      <span>{{ fecha.dia_semana }}</span>
+      <span class="dia-num">{{ fecha.dia }}</span>
+      <span>{{ fecha.mes }}</span>
+      <span class="anio">{{ fecha.anio }}</span>
+    </div>
+  </div>
+  <a class="bajar" href="#mensaje" aria-label="Ver la invitación">
+    <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M9 3v12M3.5 9.5 9 15l5.5-5.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</header>
+
+<section class="seccion" id="mensaje">
+  <div class="contenedor tarjeta revela">
+    {{ filigrana() }}
+    <p class="texto-grande">{{ textos.mensaje }}</p>
+    {% if textos.cita %}
+    <blockquote class="cita">
+      <p>{{ textos.cita.texto }}</p>
+      {% if textos.cita.autor %}<footer>{{ textos.cita.autor }}</footer>{% endif %}
+    </blockquote>
+    {% endif %}
+  </div>
+</section>
+
+<section class="seccion" aria-labelledby="t-cuenta">
+  <div class="contenedor revela">
+    <h2 class="titulo" id="t-cuenta">Faltan</h2>
+    <dl class="cuenta" id="cuenta">
+      <div><dt>días</dt><dd data-u="d">–</dd></div>
+      <div><dt>horas</dt><dd data-u="h">–</dd></div>
+      <div><dt>minutos</dt><dd data-u="m">–</dd></div>
+      <div><dt>segundos</dt><dd data-u="s">–</dd></div>
+    </dl>
+    <p class="cuenta-fin texto-grande" id="cuenta-fin" hidden>Llegó el gran día.</p>
+  </div>
+</section>
+
+{% if familia.padres or familia.padrinos %}
+<section class="seccion" aria-labelledby="t-familia">
+  <div class="contenedor revela">
+    <h2 class="titulo" id="t-familia">Con la bendición de Dios</h2>
+    <div class="familia">
+      {% if familia.padres %}<div><h3>{{ 'Mis padres' if familia.padres|length > 1 else 'Con el amor de' }}</h3><p>{{ familia.padres|join('<br>'|safe) }}</p></div>{% endif %}
+      {% if familia.padrinos %}<div><h3>Mis padrinos</h3><p>{{ familia.padrinos|join('<br>'|safe) }}</p></div>{% endif %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section class="seccion" aria-labelledby="t-momentos">
+  <div class="contenedor">
+    <h2 class="titulo revela" id="t-momentos">Cuándo y dónde</h2>
+    <ol class="momentos">
+      {% for m in momentos %}
+      <li class="momento tarjeta revela">
+        <h3>{{ m.tipo_texto }}</h3>
+        <p class="momento-hora" aria-label="{{ m.hora_texto }} {{ m.ampm_texto }}">{{ m.hora_texto }} <small>{{ m.ampm }}</small></p>
+        {{ filigrana("filigrana mini") }}
+        <p class="momento-lugar">{{ m.lugar }}</p>
+        {% if m.direccion %}<p class="momento-dir">{{ m.direccion }}</p>{% endif %}
+        <div class="momento-acciones">
+          <a class="boton" href="{{ m.mapa }}" target="_blank" rel="noopener">Cómo llegar</a>
+          <a class="boton boton-sec" href="#" target="_blank" rel="noopener" data-calendario="{{ loop.index0 }}">Agregar al calendario</a>
+        </div>
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>
+
+{% if vestimenta %}
+<section class="seccion" aria-labelledby="t-vestimenta">
+  <div class="contenedor revela">
+    <h2 class="titulo" id="t-vestimenta">Código de vestimenta</h2>
+    <p class="nivel">{{ vestimenta.nivel_texto }}</p>
+    {% if vestimenta.colores %}
+    <div class="reservados">
+      <p>Estos colores son parte de mi vestido. Por favor, evítalos:</p>
+      <ul class="muestras">
+        {% for c in vestimenta.colores %}<li class="muestra"><span style="--color: {{ c.hex }}" aria-hidden="true"></span><span>{{ c.nombre }}</span></li>{% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+    {% if vestimenta.nota %}<p class="nota suave">{{ vestimenta.nota }}</p>{% endif %}
+  </div>
+</section>
+{% endif %}
+
+{% if fotos.galeria %}
+<section class="seccion" aria-labelledby="t-galeria">
+  <div class="contenedor">
+    <h2 class="titulo revela" id="t-galeria">Recuerdos</h2>
+    <div class="galeria galeria-{{ fotos.galeria|length }}">
+      {% for f in fotos.galeria %}<figure class="revela"><img src="{{ f }}" alt="Foto {{ loop.index }} de {{ nombre }}" loading="lazy"></figure>{% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% if regalos %}
+<section class="seccion regalo" aria-labelledby="t-regalos">
+  <div class="contenedor tarjeta revela">
+    <h2 class="titulo" id="t-regalos">Regalos</h2>
+    <p class="texto-grande">{{ regalos.texto }}</p>
+    {% if regalos.link %}<a class="boton" href="{{ regalos.link }}" target="_blank" rel="noopener">Ver mesa de regalos</a>{% endif %}
+  </div>
+</section>
+{% endif %}
+
+{% if reglas or avisos %}
+<section class="seccion" aria-labelledby="t-reglas">
+  <div class="contenedor revela">
+    {% if reglas %}
+    <h2 class="titulo" id="t-reglas">Para esta noche</h2>
+    <ul class="reglas">{% for r in reglas %}<li>{{ r }}</li>{% endfor %}</ul>
+    {% else %}
+    <h2 class="titulo" id="t-reglas">Ten en cuenta</h2>
+    {% endif %}
+    {% if avisos %}<div class="avisos">{% for a in avisos %}<p>{{ a }}</p>{% endfor %}</div>{% endif %}
+  </div>
+</section>
+{% endif %}
+
+{% if ev.hashtag %}
+<section class="seccion" aria-labelledby="t-hashtag">
+  <div class="contenedor revela">
+    <h2 class="titulo" id="t-hashtag">Comparte tus fotos</h2>
+    <button class="hashtag" type="button">{{ ev.hashtag }}</button>
+    <p class="hashtag-estado" aria-live="polite">Toca el hashtag para copiarlo.</p>
+  </div>
+</section>
+{% endif %}
+
+<section class="seccion confirmar" id="confirmar" aria-labelledby="t-confirmar">
+  <div class="contenedor tarjeta revela">
+    <h2 class="titulo" id="t-confirmar">Confirma tu asistencia</h2>
+    <p class="limite">Por favor, antes del {{ fecha.limite }}.</p>
+    {% if ev.confirmacion.metodo == 'whatsapp' %}
+    <div class="cupos">
+      <p class="cupos-label">¿Cuántos asisten?<small id="cupos-nota">Cuéntate tú también.</small></p>
+      <div class="contador">
+        <button type="button" id="cupos-menos" aria-label="Uno menos">−</button>
+        <output id="cupos-n" aria-live="polite">1</output>
+        <button type="button" id="cupos-mas" aria-label="Uno más">+</button>
+      </div>
+    </div>
+    <div class="confirmar-acciones">
+      <a class="boton" href="https://wa.me/{{ ev.confirmacion.whatsapp|replace(" ", "")|replace("+", "") }}" target="_blank" rel="noopener" id="confirmar-si">Confirmar por WhatsApp</a>
+      <a class="boton boton-sec" href="https://wa.me/{{ ev.confirmacion.whatsapp|replace(" ", "")|replace("+", "") }}" target="_blank" rel="noopener" id="confirmar-no">No podré asistir</a>
+    </div>
+    {% else %}
+    <div class="confirmar-acciones">
+      <a class="boton" href="{{ ev.confirmacion.link }}" target="_blank" rel="noopener">Confirmar asistencia</a>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<section class="seccion cierre" aria-label="Despedida">
+  <div class="contenedor revela">
+    {% if fotos.cierre %}<figure class="cierre-foto"><img src="{{ fotos.cierre }}" alt="{{ nombre }}" loading="lazy"></figure>
+    {% else %}<div class="cierre-arte">{{ corona(inicial) }}</div>{% endif %}
+    <p class="texto-grande">{{ textos.cierre }}</p>
+    <p class="firma">{{ nombre_corto }}</p>
+    {{ filigrana() }}
+  </div>
+</section>
+</main>
+
+<footer class="pie">
+  <p>Invitación hecha por <a href="https://kcdigitalmagic.com" target="_blank" rel="noopener">KC Digital Magic</a></p>
+  {% if ev.creditos_fotos %}<p class="creditos">Fotos de ejemplo: {{ ev.creditos_fotos }} en <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a></p>{% endif %}
+</footer>
+
+<a class="boton flotante" href="#confirmar">Confirmar asistencia</a>
+
+<script type="application/json" id="datos">{{ datos_js|tojson }}</script>
+<script>
+{{ js|safe }}
+</script>
+</body>
+</html>

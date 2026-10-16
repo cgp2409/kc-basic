@@ -1,0 +1,88 @@
+{
+  "slug": "xv-isabella-2612",
+  "tipo": "xv",
+  "plantilla": "xv-clasica-elegante",
+  "tema": "cielo-plata",
+  "idioma": "es",
+  "pais": "MX",
+  "con_fotos": true,
+  "fecha": "2026-12-12",
+  "despublicar": "2026-12-17",
+  "portada": {
+    "nombres": [
+      "Isabella"
+    ],
+    "foto": "isabella-portada.jpg"
+  },
+  "mensaje": {
+    "frase_id": "xv-inv-01",
+    "texto_propio": null
+  },
+  "familia": {
+    "padres": [
+      "Gabriela Navarro",
+      "Ricardo Fuentes"
+    ],
+    "padrinos": [
+      "Lucía Navarro y Arturo Medina"
+    ]
+  },
+  "cita": {
+    "frase_id": "cita-jer-29-11"
+  },
+  "momentos": [
+    {
+      "tipo": "misa",
+      "lugar": "Parroquia de Nuestra Señora de Guadalupe",
+      "direccion": "Calle Hidalgo 45, Centro",
+      "hora": "17:00",
+      "mapa": "https://maps.app.goo.gl/ejemplo5"
+    },
+    {
+      "tipo": "recepcion",
+      "lugar": "Hacienda Los Arcos",
+      "direccion": "Carretera a San Miguel km 4",
+      "hora": "20:00",
+      "mapa": "https://maps.app.goo.gl/ejemplo6"
+    }
+  ],
+  "vestimenta": {
+    "nivel": "etiqueta",
+    "colores_reservados": [
+      "azul claro",
+      "plateado"
+    ],
+    "nota": null
+  },
+  "regalos": {
+    "tipo": "lluvia_sobres",
+    "link": null
+  },
+  "reglas": [
+    "puntual",
+    "bailar",
+    "disfrutar"
+  ],
+  "politica": [
+    "solo_adultos"
+  ],
+  "galeria": [
+    "isabella-g1.jpg",
+    "isabella-g2.jpg",
+    "isabella-g3.jpg",
+    "isabella-g4.jpg"
+  ],
+  "hashtag": "#IsabellaXV",
+  "confirmacion": {
+    "metodo": "whatsapp",
+    "whatsapp": "+52 55 0000 0000",
+    "link": null,
+    "fecha_limite": "2026-11-28"
+  },
+  "cierre": {
+    "frase_id": "cierre-02",
+    "foto": "isabella-cierre.jpg"
+  },
+  "addons": [],
+  "creditos_fotos": "Ansspvt Titan"
+}
