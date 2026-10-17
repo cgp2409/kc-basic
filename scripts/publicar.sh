@@ -18,6 +18,8 @@ cat > dist/index.html <<'HTML'
 <title>KC Digital Magic</title><a href="https://kcdigitalmagic.com">KC Digital Magic</a>
 HTML
 printf 'User-agent: *\nDisallow: /\n' > dist/robots.txt
+# Capturas de las demos para la web principal
+[ -d capturas ] && cp -r capturas dist/
 
 ORIGEN=$(git rev-parse --short HEAD)
 TMP=$(mktemp -d)
