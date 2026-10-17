@@ -59,7 +59,7 @@ window.SITE = {
     botonPrincipal: "Comprar KC Basic",
     botonSecundario: "Quiero Premium",           // va a WhatsApp con el mensaje de Premium
     enlaceDemos: "Mira los diseños",
-    notas: ["KC Basic desde 79.000 COP", "Lista en 24 a 48 horas", "Se abre desde WhatsApp"],
+    notas: ["Lista en 24 a 48 horas", "Se abre desde WhatsApp", "Sin descargar apps"],
     // Maqueta del celular con el sobre y del tablero (textos de ejemplo)
     maqueta: {
       tablero: "XV de Valentina", confirmados: 132, deTotal: 160,
@@ -138,7 +138,7 @@ window.SITE = {
       { icono: "download-simple", titulo: "Descargas la lista lista para el salón.", texto: "En Excel, para el salón, el catering y la distribución de mesas." }
     ],
     boton: "Prueba el tablero",
-    botonEnlace: "https://kcdigitalmagic.com/demo-tablero?utm_source=landing&utm_medium=web&utm_campaign=tablero",
+    botonEnlace: "https://cgp.pythonanywhere.com/tablero?evento=prueba",
     animacionEnVivo: true,                        // el contador sube solo (true / false)
     maqueta: {
       evento: "XV de Valentina", fecha: "Sábado 14 de marzo", invitados: 160,
@@ -259,7 +259,8 @@ window.SITE = {
       { icono: "handshake", texto: "Padrinos" },
       { icono: "pen-nib", texto: "Dedicatorias" },
       { icono: "hash", texto: "Hashtag del evento" },
-      { icono: "whatsapp-logo", texto: "Botón a WhatsApp" }
+      { icono: "whatsapp-logo", texto: "Botón a WhatsApp" },
+      { icono: "lightbulb", texto: "¿Otra idea? La hacemos realidad", destacado: true }
     ]
   },
 

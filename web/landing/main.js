@@ -201,7 +201,7 @@
 
   function secciones() {
     var X = S.secciones;
-    var items = X.lista.map(function (s) { return "<div>" + ico(s.icono) + "<span>" + esc(s.texto) + "</span></div>"; }).join("");
+    var items = X.lista.map(function (s) { return '<div' + (s.destacado ? ' class="sec-idea"' : "") + ">" + ico(s.icono) + "<span>" + esc(s.texto) + "</span></div>"; }).join("");
     return '<section class="secs"><div class="wrap"><div class="center reveal"><h2>' + esc(X.titulo) + '</h2><p class="lead">' + esc(X.texto) + "</p></div>" +
       '<div class="secs-grid reveal">' + items + "</div></div></section>";
   }

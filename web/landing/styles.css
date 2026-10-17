@@ -375,3 +375,8 @@ p{text-wrap:pretty}
 .btn-pronto .ico{width:16px;height:16px}
 .cierre .btn-cierre2{margin-top:14px;padding:15.5px 28px}
 @media (max-width:520px){.tab{padding:10px 14px;font-size:14px;white-space:nowrap}}
+
+/* Celular: el botón de compra no tapa el nombre */
+@media (max-width:560px){.header .logo-nombre{display:none}}
+/* Sección extra: cualquier idea */
+.secs-grid .sec-idea{color:var(--ciruela);font-weight:600}
