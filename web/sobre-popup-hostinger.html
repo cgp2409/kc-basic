@@ -1,0 +1,71 @@
+<!-- KC Digital Magic · Sobre que se abre (popup de bienvenida)
+     Pegar en Hostinger Website Builder: Configuración del sitio → Integraciones → Código personalizado (head).
+     Edita solo el bloque CONFIG. -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=DM+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+#kc-sobre{position:fixed;inset:0;z-index:2147483000;display:grid;place-items:center;padding:24px;background:radial-gradient(ellipse at 50% 40%,#FFFAF4,#F7EFE5 70%);font-family:"DM Sans",system-ui,sans-serif;transition:opacity .6s ease}
+#kc-sobre.kc-fuera{opacity:0;pointer-events:none}
+#kc-sobre .kc-caja{display:grid;justify-items:center;gap:14px;text-align:center;width:100%}
+#kc-sobre .kc-env{position:relative;width:min(80vw,340px);aspect-ratio:1.45;perspective:1000px;margin-bottom:6px}
+#kc-sobre .kc-env>div{position:absolute}
+#kc-sobre .kc-fondo{inset:0;background:#E8D9C3;border-radius:6px;box-shadow:0 24px 50px -20px rgba(29,30,32,.35)}
+#kc-sobre .kc-mask{left:6%;right:6%;bottom:4%;height:240%;overflow:hidden;z-index:1}
+#kc-sobre .kc-carta{position:absolute;left:0;right:0;bottom:0;height:37.5%;background:#FFFDF9;border-radius:4px;padding:10px;opacity:0;transition:transform .8s cubic-bezier(.2,.8,.2,1) .8s,opacity .2s .75s}
+#kc-sobre .kc-carta div{height:100%;border:1px solid rgba(184,149,90,.55);border-radius:3px;display:grid;place-content:start center;padding-top:14%;gap:4px}
+#kc-sobre .kc-carta small{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:#55545A}
+#kc-sobre .kc-carta b{font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:500;font-size:clamp(28px,8vw,40px);color:#8E2A7E}
+#kc-sobre .kc-frente{inset:0;z-index:2;background:#F1E4D1;clip-path:polygon(0 36%,50% 64%,100% 36%,100% 100%,0 100%);border-radius:6px}
+#kc-sobre .kc-tapa{left:0;right:0;top:0;height:60%;z-index:3;background:#E3D1B7;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:50% 0;transition:transform .65s cubic-bezier(.5,0,.3,1) .3s,z-index 0s .6s}
+#kc-sobre .kc-sello{left:50%;top:60%;z-index:4;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:#8E2A7E;display:grid;place-items:center;font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:600;font-size:24px;color:#F7EFE5;box-shadow:inset 0 0 0 5px #8E2A7E,inset 0 0 0 7px rgba(247,239,229,.45),0 6px 14px rgba(29,30,32,.25);transition:opacity .35s ease .1s,transform .35s ease .1s}
+#kc-sobre.kc-abierto .kc-sello{opacity:0;transform:scale(.8)}
+#kc-sobre.kc-abierto .kc-tapa{transform:rotateX(180deg);z-index:0}
+#kc-sobre.kc-abierto .kc-carta{opacity:1;transform:translateY(-58%)}
+#kc-sobre .kc-titulo{margin:6px 0 0;font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(28px,7vw,40px);line-height:1.1;color:#1D1E20}
+#kc-sobre .kc-sub{margin:0;font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:#55545A}
+#kc-sobre .kc-boton{margin-top:8px;border:0;cursor:pointer;background:#8E2A7E;color:#F7EFE5;font:600 16px "DM Sans",sans-serif;padding:15px 28px;border-radius:999px;box-shadow:0 8px 20px rgba(142,42,126,.25)}
+#kc-sobre.kc-abierto .kc-boton,#kc-sobre.kc-abierto .kc-sub{opacity:0;transition:opacity .3s}
+@media (prefers-reduced-motion:reduce){#kc-sobre *{transition:none!important}}
+</style>
+<script>
+(function () {
+  /* ===== CONFIG: cambia solo esto ===== */
+  var CONFIG = {
+    sello: "KC",                      // letras del sello de lacre
+    carta: "KC Digital Magic",        // lo que sale escrito en la carta
+    cartaArriba: "Bienvenida",
+    titulo: "Tu invitación te espera",
+    subtitulo: "Invitaciones digitales",
+    boton: "Abrir",
+    soloEnPaginas: [],                // ej. ["/", "/xv-anos"]; vacío = en todas
+    unaVezPorVisita: true             // no repetir al cambiar de página
+  };
+  /* ==================================== */
+  if (CONFIG.soloEnPaginas.length && CONFIG.soloEnPaginas.indexOf(location.pathname) < 0) return;
+  try { if (CONFIG.unaVezPorVisita && sessionStorage.getItem("kc-sobre")) return; } catch (e) {}
+  function crear() {
+    var d = document.createElement("div");
+    d.id = "kc-sobre"; d.setAttribute("role", "dialog"); d.setAttribute("aria-modal", "true");
+    d.innerHTML =
+      '<div class="kc-caja"><div class="kc-env" aria-hidden="true"><div class="kc-fondo"></div>' +
+      '<div class="kc-mask"><div class="kc-carta"><div><small></small><b></b></div></div></div>' +
+      '<div class="kc-frente"></div><div class="kc-tapa"></div><div class="kc-sello"></div></div>' +
+      '<p class="kc-titulo"></p><p class="kc-sub"></p><button type="button" class="kc-boton"></button></div>';
+    d.querySelector(".kc-carta small").textContent = CONFIG.cartaArriba;
+    d.querySelector(".kc-carta b").textContent = CONFIG.carta;
+    d.querySelector(".kc-sello").textContent = CONFIG.sello;
+    d.querySelector(".kc-titulo").textContent = CONFIG.titulo;
+    d.querySelector(".kc-sub").textContent = CONFIG.subtitulo;
+    d.querySelector(".kc-boton").textContent = CONFIG.boton;
+    document.body.appendChild(d);
+    var html = document.documentElement, antes = html.style.overflow;
+    html.style.overflow = "hidden";
+    d.querySelector(".kc-boton").addEventListener("click", function () {
+      d.classList.add("kc-abierto");
+      try { sessionStorage.setItem("kc-sobre", "1"); } catch (e) {}
+      setTimeout(function () { d.classList.add("kc-fuera"); html.style.overflow = antes; }, 1700);
+      setTimeout(function () { d.remove(); }, 2400);
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", crear); else crear();
+})();
+</script>

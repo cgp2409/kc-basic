@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:"Cormorant Garamond";src:url(cormorant-garamond-latin-wght-normal.woff2) format("woff2");font-weight:300 700;font-style:normal}
+@font-face{font-family:"Cormorant Garamond";src:url(cormorant-garamond-latin-wght-italic.woff2) format("woff2");font-weight:300 700;font-style:italic}
+@font-face{font-family:"DM Sans";src:url(dm-sans-latin-wght-normal.woff2) format("woff2");font-weight:100 1000}
+:root{--ciruela:#8E2A7E;--crema:#F7EFE5;--tinta:#1D1E20;--oro:#B8955A;--rosa:#F2C4DE;--texto:#4A4A50}
+*{box-sizing:border-box;margin:0}
+html,body{width:540px;height:960px;overflow:hidden}
+body{background:var(--crema);font-family:"DM Sans",sans-serif;color:var(--tinta);
+  background-image:radial-gradient(ellipse at 50% 35%,#FFFAF4 0,rgba(255,250,244,0) 60%),repeating-linear-gradient(0deg,rgba(29,30,32,.022) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(29,30,32,.016) 0 1px,transparent 1px 4px)}
+.capa{position:absolute;inset:0}
+.serif{font-family:"Cormorant Garamond",serif}
+.sello{border-radius:50%;background:var(--ciruela);display:flex;align-items:center;justify-content:center;font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:600;color:var(--crema)}
+/* chispas */
+.chispa{position:absolute;width:6px;height:6px;background:var(--oro);transform:rotate(45deg);opacity:.0}
+/* Escena A: sobre */
+#titA{position:absolute;top:118px;left:0;right:0;text-align:center}
+#titA .eb{font-size:14px;letter-spacing:.32em;text-transform:uppercase;color:var(--ciruela);font-weight:600}
+#titA h1{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:52px;line-height:1.05;margin-top:14px}
+#titA h1 em{color:var(--ciruela)}
+.sobre{position:absolute;left:70px;width:400px;height:270px;top:480px;perspective:1400px}
+.sobre>div{position:absolute}
+.s-fondo{inset:0;background:#E8D9C3;border-radius:8px;box-shadow:0 30px 60px rgba(29,30,32,.15)}
+.s-mask{left:22px;right:22px;bottom:12px;height:560px;overflow:hidden;z-index:1}
+.s-carta{position:absolute;left:0;right:0;bottom:-330px;height:500px;background:#FFFDF9;border-radius:6px;padding:14px;box-shadow:0 4px 14px rgba(29,30,32,.1)}
+.s-carta>div{height:100%;border:1px solid rgba(184,149,90,.55);border-radius:4px;display:flex;flex-direction:column;align-items:center;padding-top:34px;text-align:center}
+.s-carta .a{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--texto);font-weight:600}
+.s-carta .b{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:62px;line-height:1;margin-top:12px;color:var(--ciruela)}
+.s-carta .c{width:56px;height:1px;background:var(--oro);margin:16px 0}
+.s-carta .d{font-size:15px;color:var(--texto)}
+.s-frente{inset:0;z-index:2;background:#F1E4D1;clip-path:polygon(0 36%,50% 64%,100% 36%,100% 100%,0 100%);border-radius:8px}
+.s-tapa{left:0;right:0;top:0;height:60%;background:#E3D1B7;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:50% 0}
+.s-sello{z-index:4;left:50%;top:60%;width:78px;height:78px;margin:-39px 0 0 -39px;font-size:30px;box-shadow:inset 0 0 0 6px var(--ciruela),inset 0 0 0 8px rgba(247,239,229,.45),0 6px 14px rgba(29,30,32,.25)}
+/* Escena B: celular */
+#capB{opacity:0}
+#cap{position:absolute;top:70px;left:0;right:0;text-align:center;height:150px}
+#cap .linea{position:absolute;left:0;right:0}
+#cap .eb{font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--ciruela);font-weight:600}
+#cap .t{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:48px;line-height:1.05;margin-top:10px}
+#cap .t em{color:var(--ciruela)}
+.tel{position:absolute;left:50%;top:232px;width:318px;height:650px;margin-left:-159px;background:var(--tinta);border-radius:46px;padding:10px;box-shadow:0 40px 80px rgba(29,30,32,.28),0 8px 18px rgba(29,30,32,.15)}
+.pant{position:relative;width:100%;height:100%;border-radius:37px;overflow:hidden;background:#000}
+.pant img{position:absolute;left:0;top:0;width:100%;will-change:transform}
+.notch{position:absolute;top:12px;left:50%;width:90px;height:24px;margin-left:-45px;border-radius:14px;background:var(--tinta);z-index:3}
+#chip{position:absolute;top:898px;left:0;right:0;text-align:center}
+#chip span{display:inline-block;font-size:14px;font-weight:600;letter-spacing:.06em;color:var(--ciruela);background:#fff;border:1px solid rgba(184,149,90,.4);padding:8px 16px;border-radius:999px}
+/* Escena C: cierre */
+#capC{opacity:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 40px}
+#capC .sello{width:124px;height:124px;font-size:50px;box-shadow:inset 0 0 0 7px var(--ciruela),inset 0 0 0 9px rgba(247,239,229,.45),0 12px 26px rgba(142,42,126,.3)}
+#capC h2{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:96px;line-height:1;margin-top:30px}
+#capC h2 em{color:var(--ciruela)}
+#capC .sub{font-size:21px;color:var(--texto);margin-top:12px}
+#capC ul{list-style:none;padding:0;margin-top:40px;display:flex;flex-direction:column;gap:18px}
+#capC li{font-family:"Cormorant Garamond",serif;font-size:38px;font-weight:500;display:flex;align-items:center;gap:14px;justify-content:center}
+#capC li i{width:8px;height:8px;background:var(--oro);transform:rotate(45deg);flex:none}
+#capC .cta{margin-top:50px;background:var(--ciruela);color:var(--crema);font-weight:600;font-size:23px;padding:22px 40px;border-radius:999px;box-shadow:0 12px 26px rgba(142,42,126,.3)}
+#capC .web{margin-top:18px;font-size:19px;color:var(--texto);letter-spacing:.04em}
+</style></head><body>
+<div class="capa" id="chispas"></div>
+
+<div class="capa" id="capA">
+  <div id="titA"><div class="eb">KC Digital Magic</div><h1>Tu invitación de XV,<br><em>lista en 24 a 48 h</em></h1></div>
+  <div class="sobre" id="sobre">
+    <div class="s-fondo"></div>
+    <div class="s-mask"><div class="s-carta" id="carta"><div><span class="a">Nuevo</span><span class="b">KC Basic</span><span class="c"></span><span class="d">Invitaciones web de XV años</span></div></div></div>
+    <div class="s-frente"></div><div class="s-tapa" id="tapa"></div><div class="s-sello sello" id="sello">KC</div>
+  </div>
+</div>
+
+<div class="capa" id="capB">
+  <div id="cap"></div>
+  <div class="tel" id="tel"><div class="pant" id="pant"><div class="notch"></div></div></div>
+  <div id="chip"><span id="chipT"></span></div>
+</div>
+
+<div class="capa" id="capC">
+  <span class="sello">KC</span>
+  <h2>KC <em>Basic</em></h2>
+  <p class="sub">Invitaciones web de XV años</p>
+  <ul><li><i></i>Diseños profesionales</li><li><i></i>Listas en 24 a 48 horas</li><li><i></i>A un precio cómodo</li></ul>
+  <div class="cta">Pídela hoy</div>
+  <div class="web">kcdigitalmagic.com</div>
+</div>
+
+<script>
+var DEMOS=[
+ {img:"xv-ana-2611.jpg",eb:"Diseños",t:"<em>profesionales</em>",chip:"Moderna · Noche dorada"},
+ {img:"xv-isabella-2612.jpg",eb:"Rápido",t:"Lista en <em>24 a 48 h</em>",chip:"Clásica · Cielo y plata"},
+ {img:"xv-valentina-fotos-2701.jpg",eb:"Precio",t:"<em>cómodo</em> y claro",chip:"Moderna · Rosa neón"},
+ {img:"xv-mariana-2702.jpg",eb:"Fácil",t:"Se abre desde <em>WhatsApp</em>",chip:"Clásica · Marfil y dorado"}
+];
+var $=function(s){return document.querySelector(s)};
+var pant=$("#pant"), cap=$("#cap");
+DEMOS.forEach(function(d,i){
+  var im=document.createElement("img"); im.src=d.img; im.id="d"+i; pant.appendChild(im);
+  var l=document.createElement("div"); l.className="linea"; l.id="c"+i; l.innerHTML='<div class="eb">'+d.eb+'</div><div class="t">'+d.t+'</div>'; cap.appendChild(l);
+});
+// chispas fijas (semilla)
+var R=function(){var s=7;return function(){s=(s*9301+49297)%233280;return s/233280}}();
+var CH=[];for(var k=0;k<18;k++){var c=document.createElement("i");c.className="chispa";c.style.left=(R()*520+10)+"px";c.style.top=(R()*920+20)+"px";var sz=3+R()*5;c.style.width=c.style.height=sz+"px";$("#chispas").appendChild(c);CH.push({el:c,f:R()*6.28,v:.6+R()*1.4});}
+
+function cl(x){return Math.max(0,Math.min(1,x))}
+function e(x){x=cl(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2}   // easeInOutCubic
+function eo(x){x=cl(x);return 1-Math.pow(1-x,3)}                     // easeOutCubic
+function seg(t,a,b){return (t-a)/(b-a)}
+
+window.setT=function(t){
+  // chispas
+  CH.forEach(function(c){c.el.style.opacity=(.18+.32*(.5+.5*Math.sin(c.f+t*c.v*3))).toFixed(3)});
+  // ---- Escena A (0 – 2.6 s)
+  var A=$("#capA");
+  var inA=eo(seg(t,0,.5)), outA=e(seg(t,2.2,2.7));
+  A.style.opacity=(inA*(1-outA)).toFixed(3);
+  $("#titA").style.transform="translateY("+((1-eo(seg(t,.05,.7)))*24)+"px)";
+  $("#titA").style.opacity=eo(seg(t,.05,.7));
+  $("#sobre").style.transform="translateY("+((1-eo(seg(t,0,.6)))*60 - outA*40)+"px) scale("+(1-outA*.08)+")";
+  var s=e(seg(t,.55,.85)); $("#sello").style.opacity=1-s; $("#sello").style.transform="scale("+(1-.2*s)+")";
+  var tp=e(seg(t,.7,1.25)); var tapa=$("#tapa"); tapa.style.transform="rotateX("+(180*tp)+"deg)"; tapa.style.zIndex=tp>.5?0:3;
+  $("#carta").style.opacity=e(seg(t,.85,1.05)); $("#carta").style.transform="translateY("+(-262*e(seg(t,1.15,1.9)))+"px)";
+  // ---- Escena B (2.5 – 9.4 s): 4 demos de 1.7 s
+  var B=$("#capB"); var inB=eo(seg(t,2.45,2.95)), outB=e(seg(t,9.0,9.5));
+  B.style.opacity=(inB*(1-outB)).toFixed(3);
+  var tel=$("#tel"); tel.style.transform="translateY("+((1-inB)*80+outB*-30)+"px) scale("+(1-outB*.1)+")";
+  var T0=2.55, D=1.7;
+  DEMOS.forEach(function(d,i){
+    var a=T0+i*D, local=t-a;
+    var img=$("#d"+i), lin=$("#c"+i);
+    var entra = i===0?1:e(seg(local,-.0,.38));       // entra desde la derecha
+    var sale  = i===DEMOS.length-1?0:e(seg(local,D,D+.38));
+    var x = (1-entra)*100 - sale*100;
+    var visible = (i===0 ? t>2.2 : local>-0.01) && local< D+.4;
+    img.style.display = visible || (i===DEMOS.length-1 && t>a) ? "block":"none";
+    var h=img.naturalHeight? img.naturalHeight*(298/img.naturalWidth):1900;
+    var pan = Math.min(h-630, 950) * e(seg(local,.55,D+.35));
+    img.style.transform="translate("+x+"%,"+(-pan)+"px)";
+    var ca = e(seg(local,.05,.45)) * (1-e(seg(local,D-.05,D+.25)));
+    if(i===DEMOS.length-1) ca = e(seg(local,.05,.45));
+    lin.style.opacity=ca.toFixed(3);
+    lin.style.transform="translateY("+((1-e(seg(local,.05,.45)))*18)+"px)";
+    if(local>=-.01 && local<D) $("#chipT").textContent=d.chip;
+  });
+  // ---- Escena C (9.3 – 12 s)
+  var C=$("#capC"); var inC=eo(seg(t,9.3,9.9));
+  C.style.opacity=inC.toFixed(3);
+  var kids=C.children;
+  for(var j=0;j<kids.length;j++){var p=eo(seg(t,9.3+j*.12,9.9+j*.12));kids[j].style.transform="translateY("+((1-p)*26)+"px)";kids[j].style.opacity=p;}
+  C.querySelector(".cta").style.transform+= " scale("+(1+.04*Math.sin(Math.max(0,t-10.6)*5)*(t>10.6?1:0))+")";
+};
+setT(0);
+</script>
+</body></html>
