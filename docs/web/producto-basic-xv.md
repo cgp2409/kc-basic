@@ -8,19 +8,19 @@
 | Zona | Países | Moneda | Precio |
 | --- | --- | --- | --- |
 | Colombia (base de la tienda) | CO | COP | 79.000 |
-| México | MX | MXN | por definir (propuesta 399) |
-| Internacional | resto | USD | por definir (propuesta 22) |
+| México | MX | MXN | 399 |
+| Internacional | resto | USD | 22 |
 
 ## Descripción corta
 
-Tu invitación web de XV años, lista en 48 a 72 horas. Eliges el diseño y el color, llenas un formulario y te entregamos un enlace para compartir por WhatsApp.
+Tu invitación web de XV años, lista en 24 a 48 horas. Eliges el diseño y el color, llenas un formulario y te entregamos un enlace para compartir por WhatsApp.
 
 ## Descripción larga
 
 **Cómo funciona**
 1. Compras aquí y recibes el enlace al formulario.
 2. Llenas el formulario: datos del evento, textos, lugares y, si quieres, tus fotos.
-3. En 48 a 72 horas hábiles te enviamos tu invitación para revisarla.
+3. En 24 a 48 horas hábiles te enviamos tu invitación para revisarla.
 4. Hacemos una ronda de ajustes y la publicamos. Lista para compartir.
 
 **Incluye**

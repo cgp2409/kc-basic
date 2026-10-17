@@ -360,3 +360,18 @@ p{text-wrap:pretty}
 .f-copy a{color:rgba(247,239,229,.75);text-decoration:none}
 .f-copy a:hover{color:var(--rosa)}
 .equipo.sin-foto .wrap{justify-content:center;text-align:center}.equipo.sin-foto .eq-txt{max-width:720px}
+
+/* Premium visible + demos "pronto" */
+.hero-btns .btn-line .ico{width:20px;height:20px}
+.hero-demos{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:15px;color:var(--tinta);text-decoration:underline;text-decoration-color:var(--oro);text-underline-offset:5px}
+.hero-demos .ico{width:16px;height:16px}
+.demos-cta{gap:12px;flex-wrap:wrap}
+.demos-cta .btn-line{padding:14.5px 26px}
+.demos-cta .btn-line .ico,.plan .btn-line .ico,.cierre .btn-line .ico{width:20px;height:20px}
+.card-vis{position:relative}
+.card-pronto .phone{filter:saturate(.75);opacity:.8}
+.pronto-badge{position:absolute;top:14px;right:14px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--oro);background:#fff;border:1px solid var(--oro-borde);padding:6px 12px;border-radius:999px}
+.btn-pronto{cursor:default;color:var(--texto-suave)!important;border-color:rgba(29,30,32,.2)!important;background:transparent!important}
+.btn-pronto .ico{width:16px;height:16px}
+.cierre .btn-cierre2{margin-top:14px;padding:15.5px 28px}
+@media (max-width:520px){.tab{padding:10px 14px;font-size:14px;white-space:nowrap}}

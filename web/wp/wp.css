@@ -26,3 +26,7 @@ body:not(.home) main h2,body:not(.home) main h3{font-family:var(--serif);font-we
 .wc-block-components-text-input input,.wc-block-components-combobox input,.wc-blocks-components-select select{border-radius:10px!important;border-color:rgba(29,30,32,.2)!important}
 .wc-block-components-notice-banner.is-info{border-color:var(--oro)}
 .wp-block-woocommerce-product-details .wc-tabs{display:none}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.kc-pais select{appearance:none;-webkit-appearance:none;border:1px solid rgba(29,30,32,.18);background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%231D1E20' stroke-width='1.4'/%3E%3C/svg%3E") no-repeat right 12px center;border-radius:999px;padding:9px 30px 9px 14px;font:500 14px var(--sans);color:var(--tinta);cursor:pointer;margin-right:6px}
+@media (max-width:520px){.kc-pais select{max-width:118px;font-size:13px;padding-left:10px}}
+@media (max-width:520px){.kc-header .logo-nombre{display:none}}

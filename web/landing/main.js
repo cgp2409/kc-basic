@@ -17,7 +17,10 @@
   }
   var WA = "https://wa.me/" + S.whatsapp + "?text=" + encodeURIComponent(S.whatsappMensaje);
   function wa(cta) { return 'href="' + WA + '" data-cta="' + cta + '" target="_blank" rel="noopener"'; }
-  function buy(cta) { return 'href="' + esc(S.tienda.comprar) + '" data-cta="' + cta + '"'; }
+  function buy(cta) { return 'href="' + esc(S.tienda.comprar) + '" data-cta="' + cta + '" data-comprar'; }
+  var WAP = "https://wa.me/" + S.whatsapp + "?text=" + encodeURIComponent(S.tienda.mensajePremium);
+  function waP(cta) { return 'href="' + WAP + '" data-cta="' + cta + '" target="_blank" rel="noopener"'; }
+  function btnPremium(cta, cls) { return '<a class="btn ' + (cls || "btn-line") + '" ' + waP(cta) + ">" + ico("whatsapp-logo") + esc(S.tienda.botonPremium) + "</a>"; }
   function sello(cls, size) {
     if (S.logo) return '<span class="sello ' + cls + '"><img src="' + esc(S.logo) + '" alt="' + esc(S.marca) + '"></span>';
     return '<span class="sello ' + cls + '" aria-hidden="true">' + esc(S.siglas) + "</span>";
@@ -64,7 +67,8 @@
       '<div class="hero-txt"><h1>' + esc(h.titulo) + " <em>" + esc(h.tituloDestacado) + "</em></h1>" +
       '<p class="hero-sub">' + esc(h.subtitulo) + "</p>" +
       '<div class="hero-btns"><a class="btn btn-solid" ' + buy("hero") + ">" + ico("shopping-bag") + esc(h.botonPrincipal) + "</a>" +
-      '<a class="btn btn-line" href="' + esc(h.botonSecundarioEnlace) + '">' + esc(h.botonSecundario) + "</a></div>" +
+      btnPremium("hero") + "</div>" +
+      '<a class="hero-demos" href="#demos">' + esc(h.enlaceDemos) + ico("arrow-down") + "</a>" +
       '<p class="hero-notas">' + h.notas.map(function (n) { return "<span>" + esc(n) + "</span>"; }).join('<i aria-hidden="true"></i>') + "</p></div>" +
       '<div class="hero-vis"><div class="mock" id="mock" role="img" aria-label="Un celular muestra una invitación que sale de un sobre con sello; detrás, el tablero de invitados con confirmados divididos en adultos, jóvenes y niños">' +
       '<div class="mock-tab"><div class="mock-row"><span class="mock-k">Tablero</span><span class="mock-live"><i></i>En vivo</span></div>' +
@@ -100,9 +104,12 @@
         '<span class="pd" style="color:' + m.suave + '">' + esc(m.fecha) + "</span>" +
         '<span class="pb" style="' + btn + '">' + esc(m.textoBoton) + "</span></div></div>";
     }
-    return '<article class="card"><div class="card-vis"><div class="phone" role="img" aria-label="' + esc(d.descripcionImagen) + '">' + vis + "</div></div>" +
-      '<span class="card-tipo">' + esc(d.etiqueta) + "</span><h3>" + esc(d.titulo) + "</h3>" +
-      '<a class="btn btn-line" href="' + esc(d.enlace) + '" target="_blank" rel="noopener">' + esc(S.demos.botonDemo) + ico("arrow-up-right") + "</a></article>";
+    var accion = d.pronto
+      ? '<span class="btn btn-line btn-pronto" aria-disabled="true">' + ico("clock") + esc(S.demos.textoPronto) + "</span>"
+      : '<a class="btn btn-line" href="' + esc(d.enlace) + '" target="_blank" rel="noopener">' + esc(S.demos.botonDemo) + ico("arrow-up-right") + "</a>";
+    return '<article class="card' + (d.pronto ? " card-pronto" : "") + '"><div class="card-vis"><div class="phone" role="img" aria-label="' + esc(d.descripcionImagen) + '">' + vis + "</div>" +
+      (d.pronto ? '<span class="pronto-badge">' + esc(S.demos.textoPronto) + "</span>" : "") + "</div>" +
+      '<span class="card-tipo">' + esc(d.etiqueta) + "</span><h3>" + esc(d.titulo) + "</h3>" + accion + "</article>";
   }
 
   function demos() {
@@ -118,7 +125,7 @@
       '<div class="center reveal"><h2>' + esc(D.titulo) + '</h2><p class="lead">' + esc(D.texto) + "</p></div>" +
       '<div class="tabs" role="tablist" aria-label="Tipo de invitación"><div>' + tabs + "</div></div>" +
       D.pestanas.map(function (p, i) { return grid(p.id, i > 0); }).join("") +
-      '<div class="demos-cta"><a class="btn btn-solid" ' + buy("demos") + ">" + ico("shopping-bag") + esc(S.tienda.botonComprar) + "</a></div></div></section>";
+      '<div class="demos-cta"><a class="btn btn-solid" ' + buy("demos") + ">" + ico("shopping-bag") + esc(S.tienda.botonComprar) + "</a>" + btnPremium("demos") + "</div></div></section>";
   }
 
   function tablero() {
@@ -162,7 +169,7 @@
       var inc = pl.incluye.map(function (i) { return "<li>" + ico("check") + esc(i) + "</li>"; }).join("");
       var btn = pl.accion === "comprar"
         ? '<a class="btn btn-solid" ' + buy("precio-" + pl.id) + ">" + ico("shopping-bag") + esc(pl.boton) + "</a>"
-        : '<a class="btn btn-line" ' + wa("precio-" + pl.id) + ">" + ico("whatsapp-logo") + esc(pl.boton) + "</a>";
+        : btnPremium("precio-" + pl.id);
       return '<article class="plan' + (pl.destacado ? " plan-on" : "") + '" data-plan="' + pl.id + '">' +
         '<div class="plan-top"><h3>' + esc(pl.nombre) + '</h3><span class="plan-sello">' + esc(pl.sello) + "</span></div>" +
         '<p class="plan-desc">' + esc(pl.descripcion) + "</p>" +
@@ -220,7 +227,7 @@
     return '<section class="cierre paper"><div class="wrap reveal">' + sello("") +
       "<h2>" + esc(C.titulo) + " <em>" + esc(C.tituloDestacado) + "</em></h2>" +
       '<a class="btn btn-solid" ' + buy("cierre") + ">" + ico("shopping-bag") + esc(C.boton) + "</a>" +
-      '<a class="extra" ' + wa("cierre") + ">" + esc(C.botonWhatsapp) + "</a>" +
+      btnPremium("cierre", "btn-line btn-cierre2") +
       (C.enlaceExtra ? '<a class="extra" href="' + esc(C.enlaceExtra) + '">' + esc(C.enlaceExtraTexto) + "</a>" : "") +
       "</div></section>";
   }
@@ -260,8 +267,17 @@
 
   // Precio por país
   function paisInicial() {
+    var guardado = null;
+    try { guardado = localStorage.getItem("kc-pais"); } catch (e) {}
+    if (guardado && S.precio.paises.some(function (p) { return p.id === guardado; })) return guardado;
     var pref = S.precio.paisPorDefecto;
     if (pref !== "auto") return pref;
+    var tz = "";
+    try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (e) {}
+    if (tz === "America/Bogota") return "co";
+    if (/^America\/(Mexico_City|Cancun|Merida|Monterrey|Matamoros|Chihuahua|Ojinaga|Mazatlan|Bahia_Banderas|Hermosillo|Tijuana)$/.test(tz)) return "mx";
+    if (/^Europe\//.test(tz)) return "eu";
+    if (/^(America|Pacific|Asia|Africa|Australia)\//.test(tz)) return "us";
     var l = (navigator.language || "").toLowerCase();
     if (/-co$/.test(l)) return "co";
     if (/-mx$/.test(l)) return "mx";
@@ -269,7 +285,10 @@
     if (/^es/.test(l)) return "co";
     return "us";
   }
+  var paisActual = "co";
   function setPais(id) {
+    paisActual = id;
+    try { localStorage.setItem("kc-pais", id); } catch (e) {}
     S.precio.planes.forEach(function (pl) {
       var c = pl.precios[id] || pl.precios.co, card = $('.plan[data-plan="' + pl.id + '"]');
       $(".p-pre", card).textContent = c.simbolo; $(".p-amt", card).textContent = c.monto; $(".p-cur", card).textContent = c.moneda;
@@ -278,6 +297,20 @@
   }
   $$(".chip").forEach(function (b) { b.addEventListener("click", function () { setPais(b.dataset.pais); }); });
   setPais(paisInicial());
+
+  // Comprar: lleva a la tienda con el país elegido, para cobrar en su moneda
+  $$("[data-comprar]").forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      var p = S.precio.paises.filter(function (x) { return x.id === paisActual; })[0];
+      if (!p || !p.wc) return;
+      e.preventDefault();
+      var f = document.createElement("form");
+      f.method = "post"; f.action = a.getAttribute("href");
+      f.innerHTML = '<input type="hidden" name="wcpbc-manual-country" value="' + p.wc + '">';
+      try { localStorage.setItem("kc-pais-tienda", p.wc); } catch (e) {}
+      document.body.appendChild(f); f.submit();
+    });
+  });
 
   // Preguntas frecuentes
   $$(".faq-q").forEach(function (b) {

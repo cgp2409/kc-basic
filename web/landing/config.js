@@ -29,13 +29,15 @@ window.SITE = {
   tienda: {
     comprar: "/product/kc-basic-xv/",           // página del producto en WooCommerce
     botonComprar: "Comprar KC Basic",
+    botonPremium: "Quiero Premium",
+    mensajePremium: "Hola KC Digital Magic, quiero más información sobre las invitaciones Premium.",
     demosBase: "https://basic.kcdigitalmagic.com/"
   },
 
   /* ---------- 2. SEO (lo que ve Google) ---------- */
   seo: {
     titulo: "Invitaciones digitales de XV años y bodas | KC Digital Magic",
-    descripcion: "Invitaciones web para XV años y bodas. KC Basic lista en 72 horas desde 79.000 COP, o KC Premium diseñada a tu medida con tablero de invitados. Colombia, México, España y EE. UU.",
+    descripcion: "Invitaciones web para XV años y bodas. KC Basic lista en 24 a 48 horas desde 79.000 COP, o KC Premium diseñada a tu medida con tablero de invitados. Colombia, México, España y EE. UU.",
     url: "https://kcdigitalmagic.com/",
     imagenCompartir: "img/og-compartir.jpg"       // imagen al compartir el enlace (1200x630)
   },
@@ -53,11 +55,11 @@ window.SITE = {
   hero: {
     titulo: "Tu evento empieza cuando",
     tituloDestacado: "abren tu invitación.",      // sale en cursiva y color
-    subtitulo: "Invitaciones web para XV años y bodas. Elige KC Basic y tenla lista en 72 horas, o KC Premium, diseñada a tu medida con un tablero para saber quién viene.",
+    subtitulo: "Invitaciones web para XV años y bodas. Elige KC Basic y tenla lista en 24 a 48 horas, o KC Premium, diseñada a tu medida con un tablero para saber quién viene.",
     botonPrincipal: "Comprar KC Basic",
-    botonSecundario: "Mira los diseños",
-    botonSecundarioEnlace: "#demos",
-    notas: ["KC Basic desde 79.000 COP", "Lista en 48 a 72 horas", "Se abre desde WhatsApp"],
+    botonSecundario: "Quiero Premium",           // va a WhatsApp con el mensaje de Premium
+    enlaceDemos: "Mira los diseños",
+    notas: ["KC Basic desde 79.000 COP", "Lista en 24 a 48 horas", "Se abre desde WhatsApp"],
     // Maqueta del celular con el sobre y del tablero (textos de ejemplo)
     maqueta: {
       tablero: "XV de Valentina", confirmados: 132, deTotal: 160,
@@ -74,11 +76,12 @@ window.SITE = {
     titulo: "Mira cómo se ve",
     texto: "Ábrelas en tu celular, como las verán tus invitados. Las de KC Basic las compras y llenas hoy; las Premium se diseñan contigo desde cero.",
     pestanas: [
-      { id: "basic", texto: "KC Basic · XV" },
-      { id: "xv", texto: "Premium · XV" },
-      { id: "boda", texto: "Premium · Bodas" }
+      { id: "basic", texto: "KC Basic" },
+      { id: "xv", texto: "Premium XV" },
+      { id: "boda", texto: "Premium bodas" }
     ],
     botonDemo: "Ábrela en tu celular",
+    textoPronto: "Demo pronto",
     /* tipo: "basic", "xv" o "boda". "imagen" = captura real de la demo. */
     lista: [
       { tipo: "basic", etiqueta: "KC Basic · Moderna", titulo: "Noche dorada",
@@ -93,28 +96,28 @@ window.SITE = {
       { tipo: "basic", etiqueta: "KC Basic · Clásica · sin fotos", titulo: "Marfil y dorado",
         enlace: "https://basic.kcdigitalmagic.com/xv-mariana-2702/?para=Familia%20G%C3%B3mez",
         imagen: "https://basic.kcdigitalmagic.com/capturas/xv-mariana-2702.jpg", descripcionImagen: "Invitación clásica de XV años en marfil y dorado, con monograma y sin fotos" },
-      { tipo: "xv", etiqueta: "Premium · XV años", titulo: "Lila y oro viejo",
+      { tipo: "xv", pronto: true, etiqueta: "Premium · XV años", titulo: "Lila y oro viejo",
         enlace: "https://kcdigitalmagic.com/demos/lila-y-oro-viejo?utm_source=landing&utm_medium=web&utm_campaign=demos&utm_content=xv_lila",
         imagen: "", descripcionImagen: "Demo de invitación de XV años en lila con detalles en oro viejo",
         maqueta: { fondo: "#EFE6F4", texto: "#5B447A", suave: "#6E5A86", linea: "#B8955A",
                    boton: "#8C6BA8", botonTexto: "#FFFFFF", marco: true, circulo: false,
                    arriba: "Mis XV años", nombre: "Sofía", cursiva: true,
                    fecha: "21 · junio · 2027", extra: "", textoBoton: "Confirmar asistencia", botonContorno: false } },
-      { tipo: "xv", etiqueta: "Premium · XV años", titulo: "Verde salvia",
+      { tipo: "xv", pronto: true, etiqueta: "Premium · XV años", titulo: "Verde salvia",
         enlace: "https://kcdigitalmagic.com/demos/verde-salvia?utm_source=landing&utm_medium=web&utm_campaign=demos&utm_content=xv_salvia",
         imagen: "", descripcionImagen: "Demo de invitación de XV años en verde salvia",
         maqueta: { fondo: "#E4EADD", texto: "#3E4F39", suave: "#4B5E45", linea: "#7D9173",
                    boton: "#4B5E45", botonTexto: "#3E4F39", marco: false, circulo: true,
                    arriba: "Mis quince", nombre: "Mariana", cursiva: false,
                    fecha: "Sábado 9 de octubre", extra: "", textoBoton: "Ver itinerario", botonContorno: true } },
-      { tipo: "boda", etiqueta: "Premium · Boda", titulo: "Boda campestre",
+      { tipo: "boda", pronto: true, etiqueta: "Premium · Boda", titulo: "Boda campestre",
         enlace: "https://kcdigitalmagic.com/demos/boda-campestre?utm_source=landing&utm_medium=web&utm_campaign=demos&utm_content=boda_campestre",
         imagen: "", descripcionImagen: "Demo de invitación de boda campestre en tonos tierra",
         maqueta: { fondo: "#F3EBDD", texto: "#5E4631", suave: "#6B5139", linea: "#B8955A",
                    boton: "#8A6A4A", botonTexto: "#FFFFFF", marco: false, circulo: false,
                    arriba: "Nos casamos", nombre: "Ana|& Luis", cursiva: true,
                    fecha: "4 · diciembre · 2027", extra: "Hacienda El Roble", textoBoton: "Confirmar asistencia", botonContorno: false } },
-      { tipo: "boda", etiqueta: "Premium · Boda", titulo: "Negro y champán",
+      { tipo: "boda", pronto: true, etiqueta: "Premium · Boda", titulo: "Negro y champán",
         enlace: "https://kcdigitalmagic.com/demos/negro-y-champan?utm_source=landing&utm_medium=web&utm_campaign=demos&utm_content=boda_negro_champan",
         imagen: "", descripcionImagen: "Demo de invitación de boda en negro y champán",
         maqueta: { fondo: "#1C1B19", texto: "#EDE2CB", suave: "#CDB68A", linea: "#CDB68A",
@@ -177,18 +180,18 @@ window.SITE = {
   /* ---------- 8. PRECIO ---------- */
   precio: {
     titulo: "Dos formas de invitar.",
-    texto: "KC Basic, lista en 72 horas y la compras aquí mismo. KC Premium, diseñada contigo desde cero. Sin cobro por invitado en ninguna.",
+    texto: "KC Basic, lista en 24 a 48 horas y la compras aquí mismo. KC Premium, diseñada contigo desde cero. Sin cobro por invitado en ninguna.",
     pregunta: "¿Dónde es tu evento?",
-    paisPorDefecto: "co",                         // co, mx, eu, us, o "auto"
-    paises: [
-      { id: "co", boton: "Colombia" },
-      { id: "mx", boton: "México" },
-      { id: "eu", boton: "Europa" },
-      { id: "us", boton: "Otro país" }
+    paisPorDefecto: "auto",                       // "auto" = adivina por la zona horaria del celular; o co, mx, eu, us
+    paises: [   // wc = país que se le pasa a la tienda para cobrar en su moneda
+      { id: "co", boton: "Colombia", wc: "CO" },
+      { id: "mx", boton: "México", wc: "MX" },
+      { id: "eu", boton: "Europa", wc: "ES" },
+      { id: "us", boton: "Otro país", wc: "US" }
     ],
     planes: [
       { id: "basic", nombre: "KC Basic", destacado: true, sello: "Cómprala hoy",
-        descripcion: "Eliges diseño y color, llenas un formulario y en 48 a 72 horas tienes tu invitación.",
+        descripcion: "Eliges diseño y color, llenas un formulario y en 24 a 48 horas tienes tu invitación.",
         precios: {
           co: { simbolo: "$", monto: "79.000", moneda: "COP" },
           mx: { simbolo: "$", monto: "399", moneda: "MXN" },
@@ -208,7 +211,7 @@ window.SITE = {
         },
         pago: "40% para empezar, 60% cuando te encante.",
         incluye: ["Diseño desde cero, a tu medida", "Tablero de invitados en vivo", "Pases por familia", "Itinerario, música, QR para fotos…", "XV años y bodas", "Te acompañamos hasta el evento"],
-        boton: "Escríbenos con tu fecha", accion: "whatsapp" }
+        boton: "Quiero Premium", accion: "premium" }
     ],
     notaBoton: "Te responden Karol o Cristhian, no un bot."
   },
@@ -221,7 +224,7 @@ window.SITE = {
     basic: [
       { t: "Compras", d: "Pagas KC Basic aquí, en tu moneda." },
       { t: "Formulario", d: "Llenas los datos de tu evento y subes tus fotos si quieres.", destacado: true },
-      { t: "Primera versión", d: "En 48 a 72 horas hábiles te la mostramos y hacemos una ronda de ajustes." },
+      { t: "Primera versión", d: "En 24 a 48 horas hábiles te la mostramos y hacemos una ronda de ajustes." },
       { t: "La compartes", d: "La envías por WhatsApp; tus invitados confirman desde ahí.", destacado: true }
     ],
     premium: [
@@ -276,9 +279,9 @@ window.SITE = {
   preguntas: {
     titulo: "Preguntas frecuentes",
     lista: [
-      { p: "¿Qué diferencia hay entre Basic y Premium?", r: "KC Basic usa uno de nuestros diseños listos: tú eliges estilo y color, llenas un formulario y en 48 a 72 horas la tienes. KC Premium se diseña desde cero contigo e incluye el tablero de invitados, pases por familia, itinerario y todas las secciones que quieras." },
+      { p: "¿Qué diferencia hay entre Basic y Premium?", r: "KC Basic usa uno de nuestros diseños listos: tú eliges estilo y color, llenas un formulario y en 24 a 48 horas la tienes. KC Premium se diseña desde cero contigo e incluye el tablero de invitados, pases por familia, itinerario y todas las secciones que quieras." },
       { p: "¿Cuánto cuesta?", r: "KC Basic: 79.000 COP · 399 MXN · 22 USD, pago único. KC Premium: 159.000 COP · 999 MXN · 49 EUR · 59 USD. No cobramos por invitado." },
-      { p: "¿Cuánto tiempo tarda?", r: "KC Basic: 48 a 72 horas hábiles desde que completas el formulario. KC Premium: lo acordamos contigo según tu fecha." },
+      { p: "¿Cuánto tiempo tarda?", r: "KC Basic: 24 a 48 horas hábiles desde que completas el formulario. KC Premium: lo acordamos contigo según tu fecha." },
       { p: "¿Puedo hacer cambios después de enviarla?", r: "Sí. Tu invitación vive en la web: si cambia la hora, el lugar o algún detalle, la actualizamos y tus invitados ven la versión nueva sin que tengas que reenviarla." },
       { p: "¿Mis familiares mayores podrán abrirla?", r: "Sí. Se abre con un toque desde WhatsApp, sin descargar nada ni crear cuentas. Confirmar asistencia toma unos segundos, con botones grandes y letra clara." },
       { p: "¿Cómo digo “sin niños”?", r: "Con los pases por familia. Cada invitación muestra cuántos lugares tiene esa familia y no permite confirmar más. Lo dices con delicadeza, sin explicarlo uno por uno. Si quieres, añadimos una frase amable sobre el evento solo para adultos." },
@@ -293,7 +296,7 @@ window.SITE = {
     titulo: "La magia para tus invitados.",
     tituloDestacado: "La tranquilidad para ti.",
     boton: "Comprar KC Basic",
-    botonWhatsapp: "O escríbenos por WhatsApp",
+    botonWhatsapp: "Quiero Premium",
     enlaceExtraTexto: "Descarga gratis el checklist para organizar tus XV",
     enlaceExtra: "https://kcdigitalmagic.com/checklist-xv?utm_source=landing&utm_medium=web&utm_campaign=cierre&utm_content=checklist"
   },

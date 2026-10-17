@@ -8,7 +8,7 @@ Datos del responsable: KC Digital Magic · [nombre del comerciante] · [NIT o c�
 
 1. **Qué compras.** Un servicio digital: la elaboración y publicación de una invitación web a partir de una plantilla del catálogo KC Basic, con los datos y fotos que nos entregas por formulario.
 2. **Precio y pago.** El precio es el publicado en la tienda en la moneda de tu país, con los impuestos que apliquen. Se paga el 100% al comprar.
-3. **Entrega.** Entregamos una primera versión en 48 a 72 horas hábiles contadas desde que el formulario está completo y los datos y fotos cumplen los requisitos. Si falta información, el plazo se detiene hasta recibirla.
+3. **Entrega.** Entregamos una primera versión en 24 a 48 horas hábiles contadas desde que el formulario está completo y los datos y fotos cumplen los requisitos. Si falta información, el plazo se detiene hasta recibirla.
 4. **Ajustes y cambios.** Incluye 1 ronda de ajustes antes de publicar y 2 cambios de datos después de publicar. Los errores atribuibles a KC se corrigen siempre sin costo. Cambios de diseño o de alcance no incluidos se cotizan aparte.
 5. **Aprobación.** Si 7 días después de enviada la primera versión no recibimos respuesta, la invitación se considera aprobada.
 6. **Contenido que nos entregas.** Declaras que tienes derecho a usar las fotos y textos que envías y autorización de las personas que aparecen en ellos. No publicamos contenido ofensivo o ilegal.
