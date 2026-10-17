@@ -364,3 +364,14 @@ button { font: inherit; color: inherit; }
   .xv { right: 2vw; }
   .galeria figure { flex-basis: 46%; }
 }
+
+/* Nombre del invitado al confirmar */
+.rsvp-nombre { display: grid; gap: .4rem; margin: 0 0 1.5rem; }
+.rsvp-nombre span { font-size: .95rem; color: var(--tinta-suave); }
+.rsvp-nombre input {
+  font: inherit; color: var(--tinta); background: transparent;
+  border: 0; border-bottom: 1.5px solid var(--linea); border-radius: 0;
+  padding: .55rem 0; font-size: 1.15rem;
+}
+.rsvp-nombre input:focus { outline: none; border-bottom-color: var(--acento); }
+.rsvp-nombre input::placeholder { color: var(--tinta-suave); opacity: .6; }

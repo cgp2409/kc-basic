@@ -377,3 +377,13 @@ button { font: inherit; color: inherit; }
 @media (min-width: 48rem) {
   .momento-acciones { grid-template-columns: 1fr 1fr; }
 }
+
+/* Nombre del invitado al confirmar */
+.rsvp-nombre { display: grid; gap: .35rem; margin: 0 auto 1.5rem; max-width: 18rem; }
+.rsvp-nombre span { font-size: .8rem; letter-spacing: .25em; text-transform: uppercase; color: var(--tinta-suave); }
+.rsvp-nombre input {
+  font: inherit; font-size: 1.3rem; text-align: center; color: var(--tinta); background: transparent;
+  border: 0; border-bottom: 1px solid var(--acento); border-radius: 0; padding: .4rem 0;
+}
+.rsvp-nombre input:focus { outline: none; border-bottom-width: 2px; }
+.rsvp-nombre input::placeholder { color: var(--tinta-suave); opacity: .55; font-style: italic; }

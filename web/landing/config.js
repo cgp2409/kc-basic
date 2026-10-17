@@ -85,16 +85,16 @@ window.SITE = {
     /* tipo: "basic", "xv" o "boda". "imagen" = captura real de la demo. */
     lista: [
       { tipo: "basic", etiqueta: "KC Basic · Moderna", titulo: "Noche dorada",
-        enlace: "https://basic.kcdigitalmagic.com/xv-ana-2611/?para=Familia%20G%C3%B3mez&cupos=4",
+        enlace: "https://basic.kcdigitalmagic.com/xv-ana-2611/",
         imagen: "https://basic.kcdigitalmagic.com/capturas/xv-ana-2611.jpg", descripcionImagen: "Invitación de XV años en azul noche y dorado con foto de portada" },
       { tipo: "basic", etiqueta: "KC Basic · Moderna", titulo: "Rosa neón",
-        enlace: "https://basic.kcdigitalmagic.com/xv-valentina-fotos-2701/?para=Familia%20G%C3%B3mez&cupos=4",
+        enlace: "https://basic.kcdigitalmagic.com/xv-valentina-fotos-2701/",
         imagen: "https://basic.kcdigitalmagic.com/capturas/xv-valentina-fotos-2701.jpg", descripcionImagen: "Invitación de XV años en negro y rosa neón con foto de portada" },
       { tipo: "basic", etiqueta: "KC Basic · Clásica", titulo: "Cielo y plata",
-        enlace: "https://basic.kcdigitalmagic.com/xv-isabella-2612/?para=Familia%20G%C3%B3mez&cupos=4",
+        enlace: "https://basic.kcdigitalmagic.com/xv-isabella-2612/",
         imagen: "https://basic.kcdigitalmagic.com/capturas/xv-isabella-2612.jpg", descripcionImagen: "Invitación clásica de XV años en azul cielo, con sobre y sello de lacre" },
       { tipo: "basic", etiqueta: "KC Basic · Clásica · sin fotos", titulo: "Marfil y dorado",
-        enlace: "https://basic.kcdigitalmagic.com/xv-mariana-2702/?para=Familia%20G%C3%B3mez",
+        enlace: "https://basic.kcdigitalmagic.com/xv-mariana-2702/",
         imagen: "https://basic.kcdigitalmagic.com/capturas/xv-mariana-2702.jpg", descripcionImagen: "Invitación clásica de XV años en marfil y dorado, con monograma y sin fotos" },
       { tipo: "xv", pronto: true, etiqueta: "Premium · XV años", titulo: "Lila y oro viejo",
         enlace: "https://kcdigitalmagic.com/demos/lila-y-oro-viejo?utm_source=landing&utm_medium=web&utm_campaign=demos&utm_content=xv_lila",
@@ -199,7 +199,7 @@ window.SITE = {
           us: { simbolo: "US$", monto: "22", moneda: "USD" }
         },
         pago: "Pago único al comprar.",
-        incluye: ["4 diseños, con o sin fotos", "Confirmación por WhatsApp", "Enlace con el nombre de cada familia", "Mapas y agregar al calendario", "1 ronda de ajustes + 2 cambios", "Solo XV años, por ahora"],
+        incluye: ["4 diseños, con o sin fotos", "Confirmación por WhatsApp", "Un enlace para compartir con todos", "Mapas y agregar al calendario", "1 ronda de ajustes + 2 cambios", "Solo XV años, por ahora"],
         boton: "Comprar KC Basic", accion: "comprar" },
       { id: "premium", nombre: "KC Premium", destacado: false, sello: "A tu medida",
         descripcion: "Karol diseña tu invitación contigo, con tablero de invitados en vivo y todas las secciones.",
@@ -285,7 +285,7 @@ window.SITE = {
       { p: "¿Cuánto tiempo tarda?", r: "KC Basic: 24 a 48 horas hábiles desde que completas el formulario. KC Premium: lo acordamos contigo según tu fecha." },
       { p: "¿Puedo hacer cambios después de enviarla?", r: "Sí. Tu invitación vive en la web: si cambia la hora, el lugar o algún detalle, la actualizamos y tus invitados ven la versión nueva sin que tengas que reenviarla." },
       { p: "¿Mis familiares mayores podrán abrirla?", r: "Sí. Se abre con un toque desde WhatsApp, sin descargar nada ni crear cuentas. Confirmar asistencia toma unos segundos, con botones grandes y letra clara." },
-      { p: "¿Cómo digo “sin niños”?", r: "Con los pases por familia. Cada invitación muestra cuántos lugares tiene esa familia y no permite confirmar más. Lo dices con delicadeza, sin explicarlo uno por uno. Si quieres, añadimos una frase amable sobre el evento solo para adultos." },
+      { p: "¿Cómo digo “sin niños”?", r: "En KC Basic agregamos un aviso amable de evento solo para adultos. En KC Premium lo resolvemos con los pases por familia. Cada invitación muestra cuántos lugares tiene esa familia y no permite confirmar más. Lo dices con delicadeza, sin explicarlo uno por uno. Si quieres, añadimos una frase amable sobre el evento solo para adultos." },
       { p: "¿Cómo pago?", r: "KC Basic se paga en línea aquí mismo, en tu moneda. En KC Premium empiezas con el 40% y pagas el 60% cuando la invitación te encante; te compartimos los medios de pago de tu país por WhatsApp." },
       { p: "¿Atienden en mi país?", r: "Sí. Acompañamos familias en Colombia, México, España y el resto de Europa, y familias hispanas en EE. UU. Todo se coordina por WhatsApp, en tu horario." },
       { p: "¿Qué tengo que enviarles?", r: "Nombres, fecha, hora y lugar, las fotos que quieras incluir, tu idea de estilo y la lista de invitados. Te enviamos una guía corta para que no se te escape nada." }

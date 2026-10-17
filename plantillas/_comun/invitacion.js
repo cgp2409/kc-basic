@@ -8,18 +8,9 @@
   var $ = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
 
-  /* ---------- Invitado personalizado: ?para=Familia%20Pérez&cupos=4 ---------- */
-  var params = new URLSearchParams(location.search);
-  var para = (params.get("para") || datos.para_demo || "").trim().slice(0, 60);
-  var cupos = parseInt(params.get("cupos") || datos.cupos_demo, 10);
-  if (!(cupos >= 1 && cupos <= 20)) cupos = 0;
-
-  if (para) {
-    $$("[data-para]").forEach(function (el) {
-      el.querySelector("strong").textContent = para;
-      el.hidden = false;
-    });
-  }
+  /* KC Basic: un solo enlace para todos. El invitado escribe su nombre al confirmar. */
+  var para = "";
+  var cupos = 0;
 
   /* ---------- Apertura ---------- */
   var telon = $("#telon");
@@ -36,7 +27,7 @@
     var fondo = $(".portada-fondo");
     var xv = $(".xv text");
     var letras = $$(".nombre .letra");
-    var tarde = $$(".fecha-portada, .para:not([hidden])");
+    var tarde = $$(".fecha-portada");
     var pendientes = [];
 
     pendientes.push(fondo.animate(
@@ -186,12 +177,18 @@
   if (salida) {
     var numero = String(rsvp.whatsapp || "").replace(/\D/g, "");
     var enlaceWhatsApp = function (texto) { return "https://wa.me/" + numero + "?text=" + encodeURIComponent(texto); };
-    var plural = /^(familia|los|las)\b/i.test(para) || / y /i.test(para);
-    var quien = para ? (plural ? "Hola, somos " : "Hola, soy ") + para + ". " : "Hola. ";
+    var campoNombre = $("#rsvp-nombre");
+    var quien = "Hola. ", plural = false;
+    var leerNombre = function () {
+      var v = (campoNombre && campoNombre.value || "").trim().slice(0, 60);
+      plural = /^(familia|los|las)\b/i.test(v) || / y /i.test(v);
+      quien = v ? (plural ? "Hola, somos " : "Hola, soy ") + v + ". " : "Hola. ";
+    };
     var maximo = cupos || 10;
     var n = cupos || 1;
     var menos = $("#cupos-menos"), mas = $("#cupos-mas");
     var pintar = function () {
+      leerNombre();
       salida.value = n;
       salida.textContent = n;
       menos.disabled = n <= 1;
@@ -209,8 +206,12 @@
     }
     pintar();
 
-    $("#confirmar-no").href = enlaceWhatsApp(quien + (plural ? "No podremos" : "No podré") +
-      " asistir a los XV años de " + datos.nombre + ". ¡Gracias por la invitación!");
+    var pintarNo = function () {
+      $("#confirmar-no").href = enlaceWhatsApp(quien + (plural ? "No podremos" : "No podré") +
+        " asistir a los XV años de " + datos.nombre + ". ¡Gracias por la invitación!");
+    };
+    pintarNo();
+    if (campoNombre) campoNombre.addEventListener("input", function () { pintar(); pintarNo(); });
   }
 
   /* ---------- Barra flotante ---------- */

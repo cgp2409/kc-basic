@@ -88,12 +88,8 @@ function crearTodo() {
   resp.getRange(2, ultima + 6, 998, 1).setNumberFormat("yyyy-mm-dd");
   resp.setFrozenRows(1);
 
-  var enl = hoja.getSheets()[0].getName() === "Formulario" ? hoja.insertSheet("Enlaces") : hoja.getSheets()[0].setName("Enlaces");
-  enl.getRange("A1:B1").setValues([["Enlace general de la invitación →", ""]]);
-  enl.getRange("A3:D3").setValues([["Nombre (como debe salir)", "Cupos", "Enlace personalizado", "Mensaje para WhatsApp"]]).setFontWeight("bold").setBackground("#F7EFE5");
-  enl.getRange("C4").setFormula('=ARRAYFORMULA(IF(A4:A="","",$B$1&"?para="&ENCODEURL(A4:A)&IF(B4:B="","","&cupos="&B4:B)))');
-  enl.getRange("D4").setFormula('=ARRAYFORMULA(IF(A4:A="","","Hola "&A4:A&", con mucho cariño te comparto la invitación a mis XV años: "&C4:C))');
-  enl.setColumnWidth(1, 240); enl.setColumnWidth(3, 420); enl.setColumnWidth(4, 520); enl.setFrozenRows(3);
+  // Si quedó la pestaña vacía original, se elimina
+  hoja.getSheets().forEach(function (sh) { if (sh.getName() !== "Formulario" && sh.getLastRow() === 0 && hoja.getSheets().length > 1) hoja.deleteSheet(sh); });
 
   DriveApp.getFileById(form.getId()).moveTo(carpeta);
   DriveApp.getFileById(hoja.getId()).moveTo(carpeta);

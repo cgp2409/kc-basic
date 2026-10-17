@@ -29,7 +29,6 @@ Tu invitación web de XV años, lista en 24 a 48 horas. Eliges el diseño y el c
 - Apertura animada, cuenta regresiva, hasta 2 lugares con mapa y "agregar al calendario".
 - Código de vestimenta, regalos, reglas de la noche y hashtag.
 - Confirmación de asistencia a tu WhatsApp o a tu propio formulario.
-- Enlaces personalizados por familia, con su nombre y sus cupos.
 - 1 ronda de ajustes antes de publicar y 2 cambios de datos después.
 - Publicada hasta 5 días después de tu evento.
 

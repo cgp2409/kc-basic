@@ -53,7 +53,6 @@
 
 <div class="telon" id="telon" role="dialog" aria-modal="true" aria-labelledby="telon-nombre" data-retardo="1500">
   <div class="telon-caja">
-    <p class="telon-para" data-para hidden>Para <strong></strong></p>
     <div class="sobre" aria-hidden="true">
       <div class="sobre-fondo"></div>
       <div class="sobre-carta"><span class="sobre-carta-xv">XV</span></div>
@@ -77,7 +76,6 @@
     {% endif %}
   </div>
   <div class="portada-texto">
-    <p class="para" data-para hidden>Esta invitación es para <strong></strong></p>
     <p class="antetitulo">Mis</p>
     <svg class="xv" viewBox="0 0 300 150" aria-hidden="true"><text x="150" y="128" text-anchor="middle" font-size="150">XV</text></svg>
     <p class="antetitulo">años</p>
@@ -221,6 +219,7 @@
     <h2 class="titulo" id="t-confirmar">Confirma tu asistencia</h2>
     <p class="limite">Por favor, antes del {{ fecha.limite }}.</p>
     {% if ev.confirmacion.metodo == 'whatsapp' %}
+    <label class="rsvp-nombre"><span>Tu nombre</span><input type="text" id="rsvp-nombre" autocomplete="name" maxlength="60" placeholder="Ej. Familia Pérez"></label>
     <div class="cupos">
       <p class="cupos-label">¿Cuántos asisten?<small id="cupos-nota">Cuéntate tú también.</small></p>
       <div class="contador">

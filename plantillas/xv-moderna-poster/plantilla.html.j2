@@ -27,7 +27,6 @@
 <div class="telon" id="telon" role="dialog" aria-modal="true" aria-labelledby="telon-nombre">
   <div class="telon-caja">
     <svg class="telon-xv" viewBox="0 0 300 200" aria-hidden="true"><text x="5" y="172" font-size="200" textLength="290" lengthAdjust="spacingAndGlyphs" fill="none" stroke="currentColor" stroke-width="2.4" style="font-family:var(--display);font-weight:var(--display-peso);font-variation-settings:var(--display-ajustes)">XV</text></svg>
-    <p class="telon-para" data-para hidden>Hola, <strong></strong></p>
     <p class="telon-nombre display" id="telon-nombre">{{ nombre }}</p>
     <button class="boton" id="abrir" type="button">Abrir invitación</button>
   </div>
@@ -41,7 +40,6 @@
   </div>
   <svg class="xv" viewBox="0 0 300 200" aria-hidden="true"><text x="5" y="172" font-size="200" textLength="290" lengthAdjust="spacingAndGlyphs">XV</text></svg>
   <div class="portada-texto">
-    <p class="para" data-para hidden>Esta invitación es para <strong></strong></p>
     <h1 class="nombre display" aria-label="{{ nombre }}">{% for palabra in nombre_letras %}<span class="palabra" aria-hidden="true">{% for l in palabra %}<span class="letra">{{ l }}</span>{% endfor %}</span>{% if not loop.last %} {% endif %}{% endfor %}</h1>
     <p class="fecha-portada"><span class="dia-num">{{ fecha.dia }}</span><span>{{ fecha.mes }} {{ fecha.anio }}</span><span class="suave">{{ fecha.dia_semana }}</span></p>
   </div>
@@ -176,6 +174,7 @@
     <h2 class="titulo display" id="t-confirmar">¿Vienes?</h2>
     <p class="limite">Confirma antes del {{ fecha.limite }}.</p>
     {% if ev.confirmacion.metodo == 'whatsapp' %}
+    <label class="rsvp-nombre"><span>Tu nombre</span><input type="text" id="rsvp-nombre" autocomplete="name" maxlength="60" placeholder="Ej. Familia Pérez"></label>
     <div class="cupos">
       <p class="cupos-label">¿Cuántos van?<small id="cupos-nota">Cuéntate tú también.</small></p>
       <div class="contador">
