@@ -16,10 +16,13 @@ body:not(.home) main h2,body:not(.home) main h3{font-family:var(--serif);font-we
 .wp-element-button,.wp-block-button__link,.wc-block-components-button:not(.is-link),.single_add_to_cart_button,.woocommerce button.button,.woocommerce a.button{background:var(--ciruela)!important;color:var(--crema)!important;border:0!important;border-radius:999px!important;font-family:var(--sans)!important;font-weight:500!important;padding:15px 26px!important;box-shadow:0 8px 20px rgba(142,42,126,.22)}
 .wp-element-button:hover,.wc-block-components-button:not(.is-link):hover,.single_add_to_cart_button:hover{background:var(--ciruela-hover)!important}
 .wc-block-components-product-price,.wp-block-woocommerce-product-price .amount,.woocommerce-Price-amount{font-family:var(--serif);color:var(--tinta)}
-.wp-block-woocommerce-product-price{font-size:40px!important}
+.wp-block-woocommerce-product-price,.wp-block-woocommerce-product-price .wc-block-components-product-price,.single-product main .wc-block-components-product-price{font-size:clamp(40px,6vw,56px)!important;font-family:var(--serif)!important;line-height:1.1}
+.single-product main .wp-block-columns{gap:clamp(24px,5vw,64px)}
+.single-product .wp-block-woocommerce-product-image-gallery img,.single-product .woocommerce-product-gallery img{border-radius:16px}
+.single-product .wp-block-post-excerpt__excerpt{font-size:17px}
+.single-product .wp-block-add-to-cart-form .quantity{display:none!important}
 .woocommerce-breadcrumb,.wp-block-woocommerce-breadcrumbs,.wp-block-post-terms,.product_meta,.wp-block-woocommerce-product-meta{display:none!important}
 .wc-block-components-sidebar-layout .wc-block-components-main,.wp-block-woocommerce-checkout,.wp-block-woocommerce-cart{font-family:var(--sans)}
 .wc-block-components-text-input input,.wc-block-components-combobox input,.wc-blocks-components-select select{border-radius:10px!important;border-color:rgba(29,30,32,.2)!important}
 .wc-block-components-notice-banner.is-info{border-color:var(--oro)}
-.wp-block-woocommerce-product-image-gallery{display:none}
 .wp-block-woocommerce-product-details .wc-tabs{display:none}
