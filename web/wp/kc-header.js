@@ -93,7 +93,7 @@
       a.innerHTML = CARRITO + '<span class="kc-carrito-n" hidden>0</span>';
     });
     pintar();
-    fetch("/wp-json/wc/store/v1/cart", { credentials: "same-origin" }).then(function (r) { return r.json(); }).then(function (c) {
+    fetch("/wp-json/wc/store/v1/cart?kc=" + Date.now(), { credentials: "same-origin", cache: "no-store" }).then(function (r) { return r.json(); }).then(function (c) {
       var n = c.items_count || 0;
       document.querySelectorAll(".kc-carrito-n").forEach(function (b) { b.textContent = n; b.hidden = !n; });
       // La tienda cobra en la moneda del país elegido: si no coincide, se sincroniza una vez
