@@ -52,7 +52,7 @@
     return '<header class="header"><div class="wrap">' +
       '<a class="logo" href="#inicio" aria-label="' + esc(S.marca) + ', ir al inicio">' + sello("") + '<span class="logo-nombre">' + esc(S.marca) + "</span></a>" +
       '<nav class="nav" aria-label="Principal">' + links + "</nav>" +
-      '<div class="header-cta"><a class="btn btn-solid" ' + buy("header") + ">" + esc(S.botonMenu) + "</a>" +
+      '<div class="header-cta"><div data-kc-moneda></div><a data-kc-carrito href="/cart/">Carrito</a><a class="btn btn-solid" ' + buy("header") + ">" + esc(S.botonMenu) + "</a>" +
       '<button type="button" class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false">' + ico("list") + "</button></div>" +
       "</div>" +
       '<nav class="mnav" id="mnav" aria-label="Menú móvil">' + links + "</nav></header>";
@@ -179,6 +179,7 @@
     }).join("");
     return '<section id="precio" class="section precio"><div class="wrap">' +
       '<div class="center reveal"><h2>' + esc(P.titulo) + '</h2><p class="lead">' + esc(P.texto) + "</p></div>" +
+      '<p class="kc-aviso-moneda kc-aviso-landing">Estás viendo precios en <b id="p-moneda"></b>. Elige tu país:</p>' +
       '<div class="p-q">' + esc(P.pregunta) + '</div><div class="p-paises" role="radiogroup" aria-label="País">' + chips + "</div>" +
       '<div class="planes">' + planes + "</div>" +
       '<p class="p-resp">' + esc(P.notaBoton) + "</p></div></section>";
@@ -286,9 +287,12 @@
     return "us";
   }
   var paisActual = "co";
-  function setPais(id) {
+  var MONEDA_TXT = { co: "pesos colombianos (COP)", mx: "pesos mexicanos (MXN)", eu: "dólares (USD) para Basic y euros (EUR) para Premium", us: "dólares (USD)" };
+  function setPais(id, desdeCabecera) {
     paisActual = id;
     try { localStorage.setItem("kc-pais", id); } catch (e) {}
+    var pm = document.getElementById("p-moneda"); if (pm) pm.textContent = MONEDA_TXT[id] || "";
+    if (!desdeCabecera && window.kcPais) window.kcPais.set(id, { origen: "landing" });
     S.precio.planes.forEach(function (pl) {
       var c = pl.precios[id] || pl.precios.co, card = $('.plan[data-plan="' + pl.id + '"]');
       $(".p-pre", card).textContent = c.simbolo; $(".p-amt", card).textContent = c.monto; $(".p-cur", card).textContent = c.moneda;
@@ -297,6 +301,7 @@
   }
   $$(".chip").forEach(function (b) { b.addEventListener("click", function () { setPais(b.dataset.pais); }); });
   setPais(paisInicial());
+  window.addEventListener("kc-pais", function (e) { setPais(e.detail, true); });
 
   // Comprar: lleva a la tienda con el país elegido, para cobrar en su moneda
   $$("[data-comprar]").forEach(function (a) {

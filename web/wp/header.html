@@ -3,32 +3,6 @@
 <header class="header kc-header"><div class="wrap">
 <a class="logo" href="/" aria-label="KC Digital Magic, ir al inicio"><span class="sello" aria-hidden="true">KC</span><span class="logo-nombre">KC Digital Magic</span></a>
 <nav class="nav" aria-label="Principal"><a href="/#demos">Diseños</a><a href="/#precio">Precios</a><a href="/#preguntas">Preguntas</a><a href="https://wa.me/573104036208?text=Hola%20KC%20Digital%20Magic%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20las%20invitaciones%20Premium." target="_blank" rel="noopener">Premium</a></nav>
-<div class="header-cta">
-<label class="kc-pais"><span class="sr">País para el precio</span><select id="kc-pais" aria-label="País para el precio"><option value="CO">Colombia · COP</option><option value="MX">México · MXN</option><option value="US">Otro país · USD</option></select></label>
-<a class="btn btn-solid" href="/product/kc-basic-xv/">Comprar Basic</a></div>
+<div class="header-cta"><div data-kc-moneda></div><a data-kc-carrito href="/cart/">Carrito</a><a class="btn btn-solid" href="/product/kc-basic-xv/">Comprar Basic</a></div>
 </div></header>
-<script>
-(function(){
-  var sel=document.getElementById("kc-pais"); if(!sel) return;
-  function guardado(){ try{return localStorage.getItem("kc-pais-tienda");}catch(e){return null;} }
-  function guardar(v){ try{localStorage.setItem("kc-pais-tienda",v);}catch(e){} }
-  function adivinar(){
-    var tz=""; try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||"";}catch(e){}
-    if(tz==="America/Bogota") return "CO";
-    if(/^America\/(Mexico_City|Cancun|Merida|Monterrey|Matamoros|Chihuahua|Ojinaga|Mazatlan|Bahia_Banderas|Hermosillo|Tijuana)$/.test(tz)) return "MX";
-    return "US";
-  }
-  function enviar(v){
-    guardar(v);
-    var f=document.createElement("form"); f.method="post"; f.action=location.href;
-    f.innerHTML='<input type="hidden" name="wcpbc-manual-country" value="'+v+'">';
-    document.body.appendChild(f); f.submit();
-  }
-  var g=guardado();
-  sel.value = g || adivinar();
-  sel.addEventListener("change",function(){ enviar(sel.value); });
-  // Primera visita a la tienda: aplica el país adivinado una sola vez
-  var tienda=/single-product|woocommerce-cart|woocommerce-checkout|post-type-archive-product/.test(document.body.className);
-  if(!g && tienda) enviar(sel.value);
-})();
-</script>
+<script>/*KC_HEADER_JS*/</script>
