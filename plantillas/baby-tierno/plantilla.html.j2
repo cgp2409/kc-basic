@@ -25,28 +25,51 @@
 <body>
 {#- ===== Ilustraciones originales (SVG) ===== -#}
 {% macro estrella(x, y, s, d) -%}<path class="estrella" style="--d:{{ d }}s" transform="translate({{ x }} {{ y }}) scale({{ s }})" d="M0-10 2.9-3.1 10-3.1 4.3 1.2 6.4 8.1 0 4 -6.4 8.1 -4.3 1.2 -10-3.1 -2.9-3.1Z"/>{%- endmacro %}
-{% macro osito_globo() -%}
+{% macro globo() -%}
 <svg class="ilustracion" viewBox="0 0 360 470" aria-hidden="true">
   <defs>
-    <radialGradient id="g-crema" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#FFFDF8"/><stop offset="1" stop-color="#EBDCC6"/></radialGradient>
-    <radialGradient id="g-caramelo" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#F0D2B0"/><stop offset="1" stop-color="#C99566"/></radialGradient>
-    <radialGradient id="g-latte" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#F8EBDA"/><stop offset="1" stop-color="#DDBF9C"/></radialGradient>
-    <radialGradient id="g-rosa" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#FCE8E6"/><stop offset="1" stop-color="#EDBDB8"/></radialGradient>
-    <radialGradient id="g-azul" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#EEF5FA"/><stop offset="1" stop-color="#BCD3E6"/></radialGradient>
-    <filter id="f-suave"><feGaussianBlur stdDeviation=".6"/></filter>
+    {% for i in range(1, 6) %}<radialGradient id="g{{ i }}" cx="35%" cy="30%" r="70%"><stop offset="0" style="stop-color:var(--g{{ i }}-l)"/><stop offset="1" style="stop-color:var(--g{{ i }}-d)"/></radialGradient>
+    {% endfor %}<filter id="f-suave"><feGaussianBlur stdDeviation=".6"/></filter>
   </defs>
-  <g class="cuerdas" stroke="#B9946F" stroke-width="1.4" fill="none" opacity=".75">
+  {% if tema.animal == 'elefante' %}
+  <g class="cuerdas" stroke="var(--cuerda)" stroke-width="1.4" fill="none" opacity=".8">
+    <path d="M128 238 C150 280 200 300 236 318"/><path d="M180 250 C196 284 220 300 236 318"/><path d="M234 236 C238 270 238 300 236 318"/>
+  </g>
+  {% else %}
+  <g class="cuerdas" stroke="var(--cuerda)" stroke-width="1.4" fill="none" opacity=".75">
     <path d="M120 238 C140 300 150 320 150 352"/><path d="M180 250 L180 352"/><path d="M240 238 C220 300 210 320 210 352"/>
   </g>
+  {% endif %}
   <g class="racimo" filter="url(#f-suave)">
-    <circle cx="110" cy="150" r="52" fill="url(#g-caramelo)"/><circle cx="250" cy="150" r="54" fill="url(#g-latte)"/>
-    <circle cx="180" cy="98" r="58" fill="url(#g-crema)"/><circle cx="118" cy="66" r="36" fill="url(#g-latte)"/>
-    <circle cx="244" cy="64" r="40" fill="url(#g-caramelo)"/><circle cx="180" cy="190" r="62" fill="url(#g-crema)"/>
-    <circle cx="80" cy="102" r="30" fill="url(#g-crema)"/><circle cx="288" cy="104" r="30" fill="url(#g-crema)"/>
-    <circle cx="132" cy="214" r="34" fill="url(#g-rosa)"/><circle cx="230" cy="214" r="34" fill="url(#g-azul)"/>
-    <circle cx="180" cy="34" r="24" fill="url(#g-caramelo)"/><circle cx="64" cy="160" r="20" fill="url(#g-rosa)"/><circle cx="300" cy="168" r="20" fill="url(#g-azul)"/>
+    <circle cx="110" cy="150" r="52" fill="url(#g2)"/><circle cx="250" cy="150" r="54" fill="url(#g3)"/>
+    <circle cx="180" cy="98" r="58" fill="url(#g1)"/><circle cx="118" cy="66" r="36" fill="url(#g3)"/>
+    <circle cx="244" cy="64" r="40" fill="url(#g2)"/><circle cx="180" cy="190" r="62" fill="url(#g1)"/>
+    <circle cx="80" cy="102" r="30" fill="url(#g1)"/><circle cx="288" cy="104" r="30" fill="url(#g1)"/>
+    <circle cx="132" cy="214" r="34" fill="url(#g4)"/><circle cx="230" cy="214" r="34" fill="url(#g5)"/>
+    <circle cx="180" cy="34" r="24" fill="url(#g2)"/><circle cx="64" cy="160" r="20" fill="url(#g4)"/><circle cx="300" cy="168" r="20" fill="url(#g5)"/>
     <g fill="#fff" opacity=".7"><ellipse cx="160" cy="70" rx="12" ry="7" transform="rotate(-25 160 70)"/><ellipse cx="94" cy="128" rx="9" ry="5" transform="rotate(-25 94 128)"/><ellipse cx="232" cy="126" rx="10" ry="6" transform="rotate(-25 232 126)"/><ellipse cx="164" cy="164" rx="11" ry="6" transform="rotate(-25 164 164)"/></g>
   </g>
+  {% if tema.animal == 'elefante' %}
+  <g class="elefante">
+    <ellipse cx="180" cy="420" rx="44" ry="36" fill="#AEBBCB"/>
+    <ellipse cx="180" cy="428" rx="26" ry="22" fill="#C3CEDB"/>
+    <ellipse cx="154" cy="452" rx="16" ry="11" fill="#B8C4D3"/><ellipse cx="206" cy="452" rx="16" ry="11" fill="#B8C4D3"/>
+    <g fill="#F7F3EE"><circle cx="146" cy="456" r="2.6"/><circle cx="154" cy="458" r="2.6"/><circle cx="162" cy="456" r="2.6"/><circle cx="198" cy="456" r="2.6"/><circle cx="206" cy="458" r="2.6"/><circle cx="214" cy="456" r="2.6"/></g>
+    <ellipse cx="134" cy="356" rx="30" ry="36" fill="#AEBBCB" transform="rotate(-12 134 356)"/>
+    <ellipse cx="136" cy="358" rx="19" ry="25" fill="#F4CDD2" transform="rotate(-12 136 358)"/>
+    <ellipse cx="226" cy="356" rx="30" ry="36" fill="#AEBBCB" transform="rotate(12 226 356)"/>
+    <ellipse cx="224" cy="358" rx="19" ry="25" fill="#F4CDD2" transform="rotate(12 224 358)"/>
+    <ellipse cx="180" cy="360" rx="40" ry="38" fill="#B8C4D3"/>
+    <path d="M182 374 C182 394 204 398 214 382 C222 368 226 344 234 324" fill="none" stroke="#B8C4D3" stroke-width="15" stroke-linecap="round"/>
+    <path d="M184 386 l5 -2 M195 391 l4 -4 M207 386 l5 -3 M216 369 l5 0 M222 352 l5 1" stroke="#9FADBF" stroke-width="1.6" stroke-linecap="round"/>
+    <ellipse cx="235" cy="321" rx="7.5" ry="5" fill="#C9D3DF" transform="rotate(-30 235 321)"/>
+    <path d="M162 352 q5 -5 10 0" fill="none" stroke="#3E524C" stroke-width="2.6" stroke-linecap="round"/>
+    <path d="M190 352 q5 -5 10 0" fill="none" stroke="#3E524C" stroke-width="2.6" stroke-linecap="round"/>
+    <ellipse cx="156" cy="368" rx="7" ry="4.5" fill="#F2A9B0" opacity=".6"/><ellipse cx="204" cy="368" rx="7" ry="4.5" fill="#F2A9B0" opacity=".55"/>
+    <path d="M174 324 q2 -9 6 -10 q-1 6 3 9 q2 -7 6 -7 q-2 6 1 9" fill="none" stroke="#9FADBF" stroke-width="2" stroke-linecap="round"/>
+    <path d="M150 396 q-12 4 -14 16" fill="none" stroke="#9FADBF" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+  </g>
+  {% else %}
   <g class="osito">
     <circle cx="150" cy="300" r="15" fill="#C99566"/><circle cx="150" cy="300" r="8" fill="#E9C9A8"/>
     <circle cx="210" cy="300" r="15" fill="#C99566"/><circle cx="210" cy="300" r="8" fill="#E9C9A8"/>
@@ -64,6 +87,7 @@
     <g stroke="#B88A5E" stroke-width="1.6" opacity=".8"><path d="M128 386 h104 M131 404 h98 M134 422 h92"/><path d="M150 366 l4 72 M180 366 v72 M210 366 l-4 72"/></g>
     <rect x="118" y="358" width="124" height="14" rx="7" fill="#C29567"/>
   </g>
+  {% endif %}
 </svg>
 {%- endmacro %}
 {% macro arcoiris() -%}
@@ -72,9 +96,9 @@
     <linearGradient id="g-pie" x1="0" y1="0" x2="0" y2="1"><stop offset=".55" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
     <mask id="m-pie" maskUnits="userSpaceOnUse" x="-40" y="-40" width="480" height="320"><rect x="-40" y="-40" width="480" height="300" fill="url(#g-pie)"/></mask></defs>
   <g fill="none" stroke-width="18" filter="url(#f-acuarela)" mask="url(#m-pie)" opacity=".55" stroke-linecap="round">
-    <path d="M20 220 a180 180 0 0 1 360 0" stroke="#F6C1C1"/><path d="M38 220 a162 162 0 0 1 324 0" stroke="#F9D6B5"/>
-    <path d="M56 220 a144 144 0 0 1 288 0" stroke="#FBEBB0"/><path d="M74 220 a126 126 0 0 1 252 0" stroke="#CFE8CF"/>
-    <path d="M92 220 a108 108 0 0 1 216 0" stroke="#C6DDF0"/>
+    <path d="M20 220 a180 180 0 0 1 360 0" style="stroke:var(--arco1)"/><path d="M38 220 a162 162 0 0 1 324 0" style="stroke:var(--arco2)"/>
+    <path d="M56 220 a144 144 0 0 1 288 0" style="stroke:var(--arco3)"/><path d="M74 220 a126 126 0 0 1 252 0" style="stroke:var(--arco4)"/>
+    <path d="M92 220 a108 108 0 0 1 216 0" style="stroke:var(--arco5)"/>
   </g>
 </svg>
 {%- endmacro %}
@@ -84,7 +108,7 @@
 <div class="telon" id="telon" role="dialog" aria-modal="true" aria-labelledby="telon-nombre" data-retardo="900">
   {{ nube("n1") }}{{ nube("n2") }}{{ estrellas() }}
   <div class="telon-caja">
-    <div class="telon-globo">{{ osito_globo() }}</div>
+    <div class="telon-globo">{{ globo() }}</div>
     <p class="telon-hola display" id="telon-nombre">¡Hola, familia!</p>
     <p class="telon-sub">Tenemos algo muy tierno que contarte</p>
     <button class="boton" id="abrir" type="button">Abrir invitación</button>
@@ -94,7 +118,7 @@
 <main>
 <header class="portada" id="inicio">
   {{ estrellas() }}
-  <div class="portada-fondo">{{ arcoiris() }}{{ nube("n1") }}{{ nube("n2") }}{{ nube("n3") }}<div class="globo-flota">{{ osito_globo() }}</div></div>
+  <div class="portada-fondo">{{ arcoiris() }}{{ nube("n1") }}{{ nube("n2") }}{{ nube("n3") }}<div class="globo-flota">{{ globo() }}</div></div>
   <div class="portada-texto">
     <p class="antetitulo">{{ evento.titulo }}</p>
     <h1 class="nombre display" aria-label="{{ nombre }}">{% for palabra in nombre_letras %}<span class="palabra" aria-hidden="true">{% for l in palabra %}<span class="letra">{{ l }}</span>{% endfor %}</span>{% if not loop.last %} {% endif %}{% endfor %}</h1>
@@ -168,8 +192,9 @@
       {% for s in regalos.sugerencias %}
       <div class="sugerencia tarjeta">
         {% if 'pañal' in s|lower %}<svg viewBox="0 0 80 64" aria-hidden="true"><path d="M8 14 h64 v10 c0 20 -14 34 -32 34 S8 44 8 24z" fill="#FCE8E6" stroke="#D99A93" stroke-width="2"/><path d="M8 14 h64 v10 H8z" fill="#fff" stroke="#D99A93" stroke-width="2"/><circle cx="20" cy="19" r="3" fill="#F2C4C4"/><circle cx="60" cy="19" r="3" fill="#F2C4C4"/><path d="M28 36 q12 8 24 0" fill="none" stroke="#D99A93" stroke-width="2" stroke-linecap="round" opacity=".6"/></svg>
+        {% elif 'sobre' in s|lower %}<svg viewBox="0 0 80 64" aria-hidden="true"><rect x="10" y="14" width="60" height="40" rx="6" style="fill:var(--icono-1);stroke:var(--icono-1b)" stroke-width="2"/><path d="M12 17 L40 38 L68 17" fill="none" style="stroke:var(--icono-1b)" stroke-width="2" stroke-linejoin="round"/><path d="M40 30 c-3 -5 -10 -2 -6 3 l6 5 6 -5 c4 -5 -3 -8 -6 -3z" fill="#F2A9B0"/></svg>
         {% elif 'pañit' in s|lower or 'toallit' in s|lower %}<svg viewBox="0 0 80 64" aria-hidden="true"><rect x="10" y="22" width="60" height="32" rx="10" fill="#E3EEF7" stroke="#86A9C8" stroke-width="2"/><path d="M30 22 c0 -8 4 -14 10 -14 s10 6 10 14" fill="#fff" stroke="#86A9C8" stroke-width="2"/><rect x="28" y="30" width="24" height="8" rx="4" fill="#BCD3E6"/></svg>
-        {% else %}<svg viewBox="0 0 80 64" aria-hidden="true"><rect x="14" y="24" width="52" height="32" rx="6" fill="#FBEBB0" stroke="#D9B45A" stroke-width="2"/><rect x="10" y="18" width="60" height="10" rx="4" fill="#F9D6B5" stroke="#D9B45A" stroke-width="2"/><path d="M40 18 v38" stroke="#D9B45A" stroke-width="2"/><path d="M40 18 c-10 -14 -22 -4 -10 0 M40 18 c10 -14 22 -4 10 0" fill="none" stroke="#D9B45A" stroke-width="2"/></svg>{% endif %}
+        {% else %}<svg viewBox="0 0 80 64" aria-hidden="true"><rect x="14" y="24" width="52" height="32" rx="6" style="fill:var(--icono-2);stroke:var(--icono-2b)" stroke-width="2"/><rect x="10" y="18" width="60" height="10" rx="4" style="fill:var(--icono-2c);stroke:var(--icono-2b)" stroke-width="2"/><path d="M40 18 v38" style="stroke:var(--icono-2b)" stroke-width="2"/><path d="M40 18 c-10 -14 -22 -4 -10 0 M40 18 c10 -14 22 -4 10 0" fill="none" style="stroke:var(--icono-2b)" stroke-width="2"/></svg>{% endif %}
         <p>{{ s }}</p>
       </div>
       {% endfor %}
@@ -227,7 +252,7 @@
 
 <section class="seccion cierre" aria-label="Despedida">
   <div class="contenedor revela">
-    <div class="cierre-globo">{{ osito_globo() }}</div>
+    <div class="cierre-globo">{{ globo() }}</div>
     <p class="texto-grande">{{ textos.cierre }}</p>
     <p class="firma display">{{ nombre_corto }}</p>
   </div>

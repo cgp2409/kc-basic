@@ -2,6 +2,7 @@
    La apertura es un saludo; al abrir, el globo se eleva. */
 
 /* ---------- Tema ---------- */
+/* Las ilustraciones (globos, arcoíris, estrellas, iconos) toman sus colores de estas variables */
 :root, [data-tema="osito-caramelo"] {
   --fondo: #FBF6EF;
   --fondo-2: #F4EADC;
@@ -15,6 +16,48 @@
   --azul: #C6DDF0;
   --linea: rgba(176, 122, 82, .28);
   --sombra: 0 20px 44px -26px rgba(94, 67, 52, .45);
+  --brillo-1: rgba(242, 196, 196, .22); --brillo-2: rgba(198, 221, 240, .25); --brillo-3: rgba(251, 235, 176, .22);
+  --g1-l: #FFFDF8; --g1-d: #EBDCC6;
+  --g2-l: #F0D2B0; --g2-d: #C99566;
+  --g3-l: #F8EBDA; --g3-d: #DDBF9C;
+  --g4-l: #FCE8E6; --g4-d: #EDBDB8;
+  --g5-l: #EEF5FA; --g5-d: #BCD3E6;
+  --cuerda: #B9946F;
+  --arco1: #F6C1C1; --arco2: #F9D6B5; --arco3: #FBEBB0; --arco4: #CFE8CF; --arco5: #C6DDF0;
+  --estrella: #F1D58E;
+  --b1: #F7DADA; --b2: #F9E3CC; --b3: #DDEBDD; --b4: #DCE9F5;
+  --icono-1: #FCE8E6; --icono-1b: #D99A93;
+  --icono-2: #FBEBB0; --icono-2b: #D9B45A; --icono-2c: #F9D6B5;
+  --nota: rgba(242, 196, 196, .35);
+  --telon-fin: #F3E6D6;
+}
+[data-tema="elefante-menta"] {
+  --fondo: #F4F8F5;
+  --fondo-2: #E4EFE8;
+  --papel: #FFFFFF;
+  --tinta: #3E524C;
+  --tinta-suave: #6E837C;
+  --acento: #5E9583;
+  --acento-claro: #B5D6C9;
+  --acento-tinta: #FFFFFF;
+  --rosa: #D9CDF2;
+  --azul: #FBE3A0;
+  --linea: rgba(94, 149, 131, .28);
+  --sombra: 0 20px 44px -26px rgba(62, 82, 76, .42);
+  --brillo-1: rgba(217, 205, 242, .3); --brillo-2: rgba(181, 214, 201, .3); --brillo-3: rgba(251, 227, 160, .25);
+  --g1-l: #FFFFFF; --g1-d: #E3ECE7;
+  --g2-l: #DDF1E8; --g2-d: #94C7B2;
+  --g3-l: #F0EBFB; --g3-d: #C6B8EA;
+  --g4-l: #FFF7DA; --g4-d: #F1D68A;
+  --g5-l: #EEF5FA; --g5-d: #BCD3E6;
+  --cuerda: #8FA9A0;
+  --arco1: #D6CBF2; --arco2: #C9DDF2; --arco3: #CDEADF; --arco4: #FBEBB0; --arco5: #F6D5DA;
+  --estrella: #F3D37A;
+  --b1: #E6DEF7; --b2: #D7EEE4; --b3: #FCEFC6; --b4: #DCE9F5;
+  --icono-1: #F0EBFB; --icono-1b: #9C8BD0;
+  --icono-2: #DDF1E8; --icono-2b: #5E9583; --icono-2c: #FBE3A0;
+  --nota: rgba(217, 205, 242, .45);
+  --telon-fin: #E2EFE8;
 }
 
 /* ---------- Base ---------- */
@@ -33,9 +76,9 @@ body {
   background-color: var(--fondo);
   /* papel con grano muy suave */
   background-image:
-    radial-gradient(circle at 12% 18%, rgba(242, 196, 196, .22), transparent 38%),
-    radial-gradient(circle at 88% 42%, rgba(198, 221, 240, .25), transparent 40%),
-    radial-gradient(circle at 20% 78%, rgba(251, 235, 176, .22), transparent 42%),
+    radial-gradient(circle at 12% 18%, var(--brillo-1), transparent 38%),
+    radial-gradient(circle at 88% 42%, var(--brillo-2), transparent 40%),
+    radial-gradient(circle at 20% 78%, var(--brillo-3), transparent 42%),
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .37 0 0 0 0 .26 0 0 0 0 .2 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-attachment: fixed;
 }
@@ -74,7 +117,7 @@ button { font: inherit; color: inherit; }
 /* ---------- Decoración ---------- */
 .nube { position: absolute; color: #fff; filter: drop-shadow(0 6px 10px rgba(94, 67, 52, .07)); pointer-events: none; }
 .estrellas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
-.estrella { fill: #F1D58E; opacity: .8; }
+.estrella { fill: var(--estrella); opacity: .8; }
 .ilustracion { width: 100%; height: auto; overflow: visible; }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -93,7 +136,7 @@ button { font: inherit; color: inherit; }
 .js .telon {
   position: fixed; inset: 0; z-index: 50; overflow: hidden;
   display: grid; place-items: center;
-  background: radial-gradient(ellipse at 50% 35%, #FFFDF9, var(--fondo) 55%, #F3E6D6);
+  background: radial-gradient(ellipse at 50% 35%, #FFFDF9, var(--fondo) 55%, var(--telon-fin));
   padding: 2rem 1.25rem;
 }
 .telon .nube.n1 { width: 9rem; top: 9%; left: -1.5rem; }
@@ -193,10 +236,10 @@ button { font: inherit; color: inherit; }
   font-variant-numeric: tabular-nums; color: var(--tinta);
   box-shadow: inset 0 -6px 12px rgba(255, 255, 255, .5), 0 10px 20px -14px rgba(94, 67, 52, .6);
 }
-.cuenta div:nth-child(1) dd { background: #F7DADA; }
-.cuenta div:nth-child(2) dd { background: #F9E3CC; }
-.cuenta div:nth-child(3) dd { background: #DDEBDD; }
-.cuenta div:nth-child(4) dd { background: #DCE9F5; }
+.cuenta div:nth-child(1) dd { background: var(--b1); }
+.cuenta div:nth-child(2) dd { background: var(--b2); }
+.cuenta div:nth-child(3) dd { background: var(--b3); }
+.cuenta div:nth-child(4) dd { background: var(--b4); }
 .cuenta dt { color: var(--tinta-suave); font-size: .75rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
 
 .padrinos { margin: 0; font-size: 1.3rem; line-height: 1.5; }
@@ -216,7 +259,7 @@ button { font: inherit; color: inherit; }
 .nota-regalo {
   margin: 1.25rem auto 0; max-width: 22rem;
   padding: .7rem 1.1rem; border-radius: 16px;
-  background: rgba(242, 196, 196, .35); color: var(--tinta);
+  background: var(--nota); color: var(--tinta);
   font-weight: 700; font-size: .98rem;
 }
 .regalo .boton { margin-top: 1.5rem; }

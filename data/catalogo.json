@@ -130,7 +130,8 @@
       ],
       "galeria_formato": "ninguna",
       "temas": [
-        "osito-caramelo"
+        "osito-caramelo",
+        "elefante-menta"
       ],
       "fuente_texto": false
     }
@@ -198,7 +199,19 @@
       "og_display": "cormorant-garamond-latin-600-normal.woff",
       "og_nombre": "dancing-script-latin-700-normal.woff",
       "og_cuerpo": "quicksand-latin-600-normal.woff",
-      "og_mayusculas": false
+      "og_mayusculas": false,
+      "animal": "osito"
+    },
+    "elefante-menta": {
+      "nombre": "Elefante menta",
+      "fondo": "#F4F8F5",
+      "tinta": "#3E524C",
+      "acento": "#5E9583",
+      "og_display": "cormorant-garamond-latin-600-normal.woff",
+      "og_nombre": "dancing-script-latin-700-normal.woff",
+      "og_cuerpo": "quicksand-latin-600-normal.woff",
+      "og_mayusculas": false,
+      "animal": "elefante"
     }
   },
   "colores_reservables": [

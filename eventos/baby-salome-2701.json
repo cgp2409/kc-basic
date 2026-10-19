@@ -1,0 +1,32 @@
+{
+  "slug": "baby-salome-2701",
+  "tipo": "baby",
+  "plantilla": "baby-tierno",
+  "tema": "elefante-menta",
+  "idioma": "es",
+  "pais": "CO",
+  "con_fotos": false,
+  "fecha": "2027-01-24",
+  "despublicar": "2027-01-29",
+  "portada": { "nombres": ["Salomé"] },
+  "mensaje": { "frase_id": "baby-inv-01", "texto_propio": null },
+  "familia": { "padres": ["Daniela Rojas", "Felipe Vargas"], "padrinos": [] },
+  "cita": { "frase_id": "cita-baby-01" },
+  "momentos": [
+    { "tipo": "baby_shower", "lugar": "Casa de los abuelos", "direccion": "Calle 19 # 7-22, Garzón", "hora": "16:00", "mapa": "https://maps.app.goo.gl/ejemplo10" }
+  ],
+  "vestimenta": null,
+  "regalos": {
+    "tipo": "sobres_regalos",
+    "link": null,
+    "sugerencias": ["Lluvia de sobres", "El regalo que elijas"],
+    "nota": "Habrá un buzón para los sobres"
+  },
+  "reglas": [],
+  "politica": [],
+  "galeria": [],
+  "hashtag": "#BienvenidaSalomé",
+  "confirmacion": { "metodo": "whatsapp", "whatsapp": "+57 310 403 6208", "link": null, "fecha_limite": "2027-01-17" },
+  "cierre": { "frase_id": "baby-cierre-02" },
+  "addons": []
+}

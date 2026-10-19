@@ -67,6 +67,7 @@ for _t in ("marfil-dorado", "cielo-plata", "rosa-palo"):
 FUENTE_TEXTO = ("Figtree", "figtree-latin-wght-normal.woff2", "300 900")
 FUENTES_TEMA["osito-caramelo"] = [("Dancing Script", "dancing-script-latin-wght-normal.woff2", "400 700", "normal"),
                                   ("Quicksand", "quicksand-latin-wght-normal.woff2", "300 700", "normal")]
+FUENTES_TEMA["elefante-menta"] = FUENTES_TEMA["osito-caramelo"]
 
 
 # ---------------------------------------------------------------- utilidades
