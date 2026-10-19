@@ -42,8 +42,14 @@ BASE_URL = "https://basic.kcdigitalmagic.com"
 DIAS = ["lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"]
 MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto",
          "septiembre", "octubre", "noviembre", "diciembre"]
-TIPOS = {"misa": "Misa", "ceremonia": "Ceremonia", "civil": "Ceremonia civil", "recepcion": "Recepción"}
-DURACION_H = {"misa": 1, "ceremonia": 1, "civil": 1, "recepcion": 6}
+TIPOS = {"misa": "Misa", "ceremonia": "Ceremonia", "civil": "Ceremonia civil", "recepcion": "Recepción", "baby_shower": "Baby shower"}
+DURACION_H = {"misa": 1, "ceremonia": 1, "civil": 1, "recepcion": 6, "baby_shower": 4}
+# Cómo se nombra cada tipo de evento en títulos, calendario y mensajes de WhatsApp
+EVENTO = {
+    "xv": {"titulo": "Mis XV años", "corto": "XV años de {n}", "a": "a los XV años de {n}", "fav": "XV"},
+    "boda": {"titulo": "Nuestra boda", "corto": "Boda de {n}", "a": "a la boda de {n}", "fav": "&amp;"},
+    "baby": {"titulo": "Baby shower", "corto": "Baby shower de {n}", "a": "al baby shower de {n}", "fav": "♡"},
+}
 NIVELES = {"etiqueta": "Etiqueta", "formal": "Formal", "semiformal": "Semiformal",
            "casual": "Casual", "tematico": "Temático"}
 
@@ -59,6 +65,8 @@ CLASICA = [("Pinyon Script", "pinyon-script-latin-400-normal.woff2", "400", "nor
 for _t in ("marfil-dorado", "cielo-plata", "rosa-palo"):
     FUENTES_TEMA[_t] = CLASICA
 FUENTE_TEXTO = ("Figtree", "figtree-latin-wght-normal.woff2", "300 900")
+FUENTES_TEMA["osito-caramelo"] = [("Dancing Script", "dancing-script-latin-wght-normal.woff2", "400 700", "normal"),
+                                  ("Quicksand", "quicksand-latin-wght-normal.woff2", "300 700", "normal")]
 
 
 # ---------------------------------------------------------------- utilidades
@@ -162,6 +170,8 @@ def procesar_foto(origen, maximo, demo_tema=None, demo_tam=None, etiqueta=""):
 
 # ------------------------------------------------------------ imagen social
 def imagen_og(ev, tema, nombre, fecha):
+    if ev["tipo"] != "xv":
+        return imagen_og_simple(ev, tema, nombre, fecha)
     W, H = 1200, 630
     fondo, tinta, acento = hex_rgb(tema["fondo"]), hex_rgb(tema["tinta"]), hex_rgb(tema["acento"])
     img = Image.new("RGB", (W, H), fondo)
@@ -193,6 +203,29 @@ def imagen_og(ev, tema, nombre, fecha):
     cuerpo = ImageFont.truetype(str(FUENTES / "og" / tema.get("og_cuerpo", "fraunces-latin-500-normal.woff")), 36)
     d.text((72, 380), "Mis XV años", font=cuerpo, fill=acento)
     d.text((72, 440), fecha["larga"], font=cuerpo, fill=tinta)
+    buf = io.BytesIO()
+    img.save(buf, "JPEG", quality=86, optimize=True)
+    return buf.getvalue()
+
+
+def imagen_og_simple(ev, tema, nombre, fecha):
+    """Vista previa sin el XV: título del evento, nombre grande y fecha, centrados."""
+    W, H = 1200, 630
+    fondo, tinta, acento = hex_rgb(tema["fondo"]), hex_rgb(tema["tinta"]), hex_rgb(tema["acento"])
+    img = Image.new("RGB", (W, H), fondo)
+    d = ImageDraw.Draw(img)
+    d.rounded_rectangle((40, 40, W - 40, H - 40), radius=28, outline=acento, width=3)
+    cuerpo = ImageFont.truetype(str(FUENTES / "og" / tema.get("og_cuerpo", "fraunces-latin-500-normal.woff")), 40)
+    d.text((W / 2, 170), EVENTO[ev["tipo"]]["titulo"], font=cuerpo, fill=acento, anchor="mm")
+    disp = str(FUENTES / "og" / tema.get("og_nombre", tema["og_display"]))
+    tam = 190
+    while tam > 70:
+        f = ImageFont.truetype(disp, tam)
+        if d.textlength(nombre, font=f) <= W - 200:
+            break
+        tam -= 8
+    d.text((W / 2, 330), nombre, font=f, fill=tinta, anchor="mm")
+    d.text((W / 2, 480), fecha["larga"], font=cuerpo, fill=tinta, anchor="mm")
     buf = io.BytesIO()
     img.save(buf, "JPEG", quality=86, optimize=True)
     return buf.getvalue()
@@ -241,7 +274,7 @@ def construir(ev, fotos_dir, autonomo, demo, para_demo=None, cupos_demo=None):
         fin = inicio + timedelta(hours=DURACION_H[m["tipo"]])
         momentos.append({**m, "hora_texto": hora, "ampm": ampm, "ampm_texto": ampm_texto,
                          "tipo_texto": TIPOS[m["tipo"]]})
-        datos_m.append({"titulo": f"XV años de {nombre}: {TIPOS[m['tipo']].lower()}",
+        datos_m.append({"titulo": EVENTO[ev["tipo"]]["corto"].format(n=nombre) + (f": {TIPOS[m['tipo']].lower()}" if m["tipo"] != "baby_shower" else ""),
                         "inicio": inicio.isoformat(), "fin": fin.isoformat(),
                         "lugar": m["lugar"], "direccion": m.get("direccion", "")})
 
@@ -252,7 +285,8 @@ def construir(ev, fotos_dir, autonomo, demo, para_demo=None, cupos_demo=None):
                       "colores": [{"nombre": c, "hex": CATALOGO["colores_hex"][c]} for c in vest.get("colores_reservados", [])]}
 
     reg = ev.get("regalos")
-    regalos = {"texto": FRASES["regalos"][reg["tipo"]], "link": reg.get("link")} if reg else None
+    regalos = {"texto": FRASES["regalos"][reg["tipo"]], "link": reg.get("link"), "tipo": reg["tipo"],
+               "sugerencias": reg.get("sugerencias", []), "nota": reg.get("nota")} if reg else None
 
     familia = {k: [x for x in (ev.get("familia") or {}).get(k, []) if x] for k in ("padres", "padrinos")}
 
@@ -292,9 +326,10 @@ def construir(ev, fotos_dir, autonomo, demo, para_demo=None, cupos_demo=None):
         "css_fuentes": "\n".join(css_fuentes), "fuentes_precarga": precarga,
         "js": (PLANTILLAS / "_comun" / "invitacion.js").read_text(encoding="utf-8"),
         "favicon": (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="{tema["fondo"]}"/>'
-                    f'<text x="32" y="44" font-family="Georgia,serif" font-size="34" text-anchor="middle" fill="{tema["acento"]}">XV</text></svg>'),
+                    f'<text x="32" y="44" font-family="Georgia,serif" font-size="34" text-anchor="middle" fill="{tema["acento"]}">{EVENTO[ev["tipo"]]["fav"]}</text></svg>'),
         "url": url, "og_url": None if autonomo else url + "og.jpg",
-        "datos_js": {"slug": ev["slug"], "nombre": nombre, "url": url, "inicio": datos_m[0]["inicio"],
+        "evento": EVENTO[ev["tipo"]],
+        "datos_js": {"slug": ev["slug"], "nombre": nombre, "evento_a": EVENTO[ev["tipo"]]["a"].format(n=nombre), "url": url, "inicio": datos_m[0]["inicio"],
                      "momentos": datos_m, "confirmacion": ev["confirmacion"],
                      "para_demo": para_demo, "cupos_demo": cupos_demo},
     }

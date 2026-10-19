@@ -173,6 +173,7 @@
 
   /* ---------- Confirmación ---------- */
   var rsvp = datos.confirmacion;
+  var evA = datos.evento_a || ("a los XV años de " + datos.nombre);
   var salida = $("#cupos-n");
   if (salida) {
     var numero = String(rsvp.whatsapp || "").replace(/\D/g, "");
@@ -194,8 +195,8 @@
       menos.disabled = n <= 1;
       mas.disabled = n >= maximo;
       $("#confirmar-si").href = enlaceWhatsApp(quien + (n === 1
-        ? "Confirmo mi asistencia a los XV años de " + datos.nombre + "."
-        : "Confirmamos asistencia a los XV años de " + datos.nombre + ". Seremos " + n + " personas."));
+        ? "Confirmo mi asistencia " + evA + "."
+        : "Confirmamos asistencia " + evA + ". Seremos " + n + " personas."));
     };
     menos.addEventListener("click", function () { if (n > 1) { n--; pintar(); } });
     mas.addEventListener("click", function () { if (n < maximo) { n++; pintar(); } });
@@ -208,7 +209,7 @@
 
     var pintarNo = function () {
       $("#confirmar-no").href = enlaceWhatsApp(quien + (plural ? "No podremos" : "No podré") +
-        " asistir a los XV años de " + datos.nombre + ". ¡Gracias por la invitación!");
+        " asistir " + evA + ". ¡Gracias por la invitación!");
     };
     pintarNo();
     if (campoNombre) campoNombre.addEventListener("input", function () { pintar(); pintarNo(); });

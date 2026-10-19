@@ -1,0 +1,32 @@
+{
+  "slug": "baby-emilia-2612",
+  "tipo": "baby",
+  "plantilla": "baby-tierno",
+  "tema": "osito-caramelo",
+  "idioma": "es",
+  "pais": "CO",
+  "con_fotos": false,
+  "fecha": "2026-12-13",
+  "despublicar": "2026-12-18",
+  "portada": { "nombres": ["Emilia"] },
+  "mensaje": { "frase_id": "baby-inv-03", "texto_propio": null },
+  "familia": { "padres": ["Laura Cuéllar", "Andrés Perdomo"], "padrinos": [] },
+  "cita": { "frase_id": "cita-baby-01" },
+  "momentos": [
+    { "tipo": "baby_shower", "lugar": "Salón Los Almendros", "direccion": "Carrera 5 # 12-40, Neiva", "hora": "15:00", "mapa": "https://maps.app.goo.gl/ejemplo9" }
+  ],
+  "vestimenta": null,
+  "regalos": {
+    "tipo": "panales",
+    "link": null,
+    "sugerencias": ["Pañales etapa 2, 3 o 4", "Pañitos húmedos"],
+    "nota": "Por favor, no traer ropa de recién nacido"
+  },
+  "reglas": [],
+  "politica": [],
+  "galeria": [],
+  "hashtag": "#BabyShowerEmilia",
+  "confirmacion": { "metodo": "whatsapp", "whatsapp": "+57 310 403 6208", "link": null, "fecha_limite": "2026-12-06" },
+  "cierre": { "frase_id": "baby-cierre-01" },
+  "addons": []
+}

@@ -110,6 +110,29 @@
       ],
       "galeria_formato": "galeria",
       "temas": []
+    },
+    "baby-tierno": {
+      "tipo": "baby",
+      "estado": "lista",
+      "secciones": [
+        "portada",
+        "mensaje",
+        "cuenta_regresiva",
+        "familia",
+        "cita",
+        "momentos",
+        "vestimenta",
+        "regalos",
+        "politica",
+        "hashtag",
+        "confirmacion",
+        "cierre"
+      ],
+      "galeria_formato": "ninguna",
+      "temas": [
+        "osito-caramelo"
+      ],
+      "fuente_texto": false
     }
   },
   "temas": {
@@ -166,6 +189,16 @@
       "og_nombre": "pinyon-script-latin-400-normal.woff",
       "og_cuerpo": "cormorant-garamond-latin-600-normal.woff",
       "og_mayusculas": false
+    },
+    "osito-caramelo": {
+      "nombre": "Osito caramelo",
+      "fondo": "#FBF6EF",
+      "tinta": "#5E4334",
+      "acento": "#B07A52",
+      "og_display": "cormorant-garamond-latin-600-normal.woff",
+      "og_nombre": "dancing-script-latin-700-normal.woff",
+      "og_cuerpo": "quicksand-latin-600-normal.woff",
+      "og_mayusculas": false
     }
   },
   "colores_reservables": [
@@ -219,6 +252,7 @@
     "misa",
     "ceremonia",
     "civil",
-    "recepcion"
+    "recepcion",
+    "baby_shower"
   ]
 }

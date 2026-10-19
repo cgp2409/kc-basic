@@ -5,7 +5,10 @@
     "xv-inv-02": "Con la bendición de Dios y el amor de mis padres, te invito a celebrar mis quince años.",
     "xv-inv-03": "Con mucha alegría, mis papás y yo te invitamos a celebrar mis 15 años, un día muy especial que quiero compartir contigo.",
     "xv-inv-04": "Quince años de risas, aprendizajes y sueños. Me encantaría que celebraras esta nueva etapa conmigo.",
-    "xv-inv-05": "Has sido parte de mi historia, por eso quiero que estés en uno de sus días más importantes: mis XV años."
+    "xv-inv-05": "Has sido parte de mi historia, por eso quiero que estés en uno de sus días más importantes: mis XV años.",
+    "baby-inv-01": "Una pequeña estrella está por llegar y queremos celebrarlo con las personas que más queremos.",
+    "baby-inv-02": "Con el corazón lleno de alegría esperamos a nuestro bebé. Acompáñanos a celebrar su llegada.",
+    "baby-inv-03": "Hace meses vengo creciendo dentro de mami y ya quiero conocerte. ¡Ven a mi baby shower!"
   },
   "cita": {
     "cita-jer-29-11": {
@@ -18,6 +21,10 @@
     },
     "cita-kc-02": {
       "texto": "Brilla con tu voz y sueña con el corazón.",
+      "autor": ""
+    },
+    "cita-baby-01": {
+      "texto": "Cada bebé que llega trae consigo un nuevo comienzo y mucho amor.",
       "autor": ""
     }
   },
@@ -37,11 +44,14 @@
   "cierre": {
     "cierre-01": "Será una noche inolvidable y me encantaría contar con tu presencia.",
     "cierre-02": "Tu presencia es el mejor regalo. ¡Te espero!",
-    "cierre-03": "Nos vemos para celebrar juntos este gran día."
+    "cierre-03": "Nos vemos para celebrar juntos este gran día.",
+    "baby-cierre-01": "Te esperamos con mucho amor para celebrar esta nueva vida.",
+    "baby-cierre-02": "Gracias por ser parte de nuestra historia desde el comienzo."
   },
   "regalos": {
     "lluvia_sobres": "Tu presencia es lo más importante. Si deseas tener un detalle, habrá lluvia de sobres.",
     "mesa_regalos": "Tu presencia es lo más importante. Si deseas tener un detalle, aquí está mi mesa de regalos.",
-    "presencia": "Tu presencia es el mejor regalo."
+    "presencia": "Tu presencia es el mejor regalo.",
+    "panales": "Tu presencia es nuestro mejor regalo. Si quieres tener un detalle, los pañales y pañitos húmedos siempre serán bienvenidos."
   }
 }

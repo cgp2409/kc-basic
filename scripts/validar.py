@@ -23,7 +23,7 @@ MAX_GALERIA = 4
 MAX_TEXTO_PROPIO = 280
 MAX_NOTA = 140
 MAX_LINEAS_FAMILIA = 2
-SLUG_RE = re.compile(r"^(xv|boda)-[a-z0-9]+(-[a-z0-9]+)*-\d{4}$")
+SLUG_RE = re.compile(r"^(xv|boda|baby)-[a-z0-9]+(-[a-z0-9]+)*-\d{4}$")
 HORA_RE = re.compile(r"^([01]\d|2[0-3]):[0-5]\d$")
 WHATSAPP_RE = re.compile(r"^\+\d[\d ]{7,18}$")
 FOTO_RE = re.compile(r"^[a-z0-9_-]+\.(jpg|jpeg|png|webp)$")
@@ -62,8 +62,8 @@ def validar(ev):
         val.error("slug", "minúsculas, sin tildes, formato tipo-nombre-aamm (ej. xv-ana-2611)")
 
     tipo = ev.get("tipo")
-    if tipo not in ("xv", "boda"):
-        val.error("tipo", "debe ser 'xv' o 'boda'")
+    if tipo not in ("xv", "boda", "baby"):
+        val.error("tipo", "debe ser 'xv', 'boda' o 'baby'")
     elif isinstance(slug, str) and not slug.startswith(tipo + "-"):
         val.error("slug", f"debe empezar por '{tipo}-'")
 
@@ -94,8 +94,8 @@ def validar(ev):
     nombres = portada.get("nombres")
     if not isinstance(nombres, list) or not nombres or not all(isinstance(n, str) and n.strip() for n in nombres):
         val.error("portada.nombres", "falta el nombre")
-    elif tipo == "xv" and len(nombres) != 1:
-        val.error("portada.nombres", "en XV va un solo nombre")
+    elif tipo in ("xv", "baby") and len(nombres) != 1:
+        val.error("portada.nombres", "va un solo nombre (la quinceañera o el bebé)")
     elif tipo == "boda" and len(nombres) != 2:
         val.error("portada.nombres", "en boda van dos nombres")
 

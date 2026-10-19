@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="{{ ev.idioma }}" data-tema="{{ ev.tema }}" class="{{ 'con-fotos' if ev.con_fotos else 'sin-fotos' }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="{{ tema.fondo }}">
+<link rel="icon" href="data:image/svg+xml,{{ favicon|urlencode }}">
+<title>{{ evento.titulo }} de {{ nombre }}</title>
+<meta name="description" content="{{ fecha.larga }}. {{ textos.mensaje|truncate(140) }}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ evento.titulo }} de {{ nombre }}">
+<meta property="og:description" content="{{ fecha.larga }}. Toca para abrir tu invitación.">
+{% if og_url %}<meta property="og:image" content="{{ og_url }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">{% endif %}
+<meta property="og:url" content="{{ url }}">
+<script>document.documentElement.classList.add("js");if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("anima");</script>
+{% for f in fuentes_precarga %}<link rel="preload" href="{{ f }}" as="font" type="font/woff2" crossorigin>
+{% endfor %}<style>
+{{ css_fuentes|safe }}
+{{ css|safe }}
+</style>
+</head>
+<body>
+{#- ===== Ilustraciones originales (SVG) ===== -#}
+{% macro estrella(x, y, s, d) -%}<path class="estrella" style="--d:{{ d }}s" transform="translate({{ x }} {{ y }}) scale({{ s }})" d="M0-10 2.9-3.1 10-3.1 4.3 1.2 6.4 8.1 0 4 -6.4 8.1 -4.3 1.2 -10-3.1 -2.9-3.1Z"/>{%- endmacro %}
+{% macro osito_globo() -%}
+<svg class="ilustracion" viewBox="0 0 360 470" aria-hidden="true">
+  <defs>
+    <radialGradient id="g-crema" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#FFFDF8"/><stop offset="1" stop-color="#EBDCC6"/></radialGradient>
+    <radialGradient id="g-caramelo" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#F0D2B0"/><stop offset="1" stop-color="#C99566"/></radialGradient>
+    <radialGradient id="g-latte" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#F8EBDA"/><stop offset="1" stop-color="#DDBF9C"/></radialGradient>
+    <radialGradient id="g-rosa" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#FCE8E6"/><stop offset="1" stop-color="#EDBDB8"/></radialGradient>
+    <radialGradient id="g-azul" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#EEF5FA"/><stop offset="1" stop-color="#BCD3E6"/></radialGradient>
+    <filter id="f-suave"><feGaussianBlur stdDeviation=".6"/></filter>
+  </defs>
+  <g class="cuerdas" stroke="#B9946F" stroke-width="1.4" fill="none" opacity=".75">
+    <path d="M120 238 C140 300 150 320 150 352"/><path d="M180 250 L180 352"/><path d="M240 238 C220 300 210 320 210 352"/>
+  </g>
+  <g class="racimo" filter="url(#f-suave)">
+    <circle cx="110" cy="150" r="52" fill="url(#g-caramelo)"/><circle cx="250" cy="150" r="54" fill="url(#g-latte)"/>
+    <circle cx="180" cy="98" r="58" fill="url(#g-crema)"/><circle cx="118" cy="66" r="36" fill="url(#g-latte)"/>
+    <circle cx="244" cy="64" r="40" fill="url(#g-caramelo)"/><circle cx="180" cy="190" r="62" fill="url(#g-crema)"/>
+    <circle cx="80" cy="102" r="30" fill="url(#g-crema)"/><circle cx="288" cy="104" r="30" fill="url(#g-crema)"/>
+    <circle cx="132" cy="214" r="34" fill="url(#g-rosa)"/><circle cx="230" cy="214" r="34" fill="url(#g-azul)"/>
+    <circle cx="180" cy="34" r="24" fill="url(#g-caramelo)"/><circle cx="64" cy="160" r="20" fill="url(#g-rosa)"/><circle cx="300" cy="168" r="20" fill="url(#g-azul)"/>
+    <g fill="#fff" opacity=".7"><ellipse cx="160" cy="70" rx="12" ry="7" transform="rotate(-25 160 70)"/><ellipse cx="94" cy="128" rx="9" ry="5" transform="rotate(-25 94 128)"/><ellipse cx="232" cy="126" rx="10" ry="6" transform="rotate(-25 232 126)"/><ellipse cx="164" cy="164" rx="11" ry="6" transform="rotate(-25 164 164)"/></g>
+  </g>
+  <g class="osito">
+    <circle cx="150" cy="300" r="15" fill="#C99566"/><circle cx="150" cy="300" r="8" fill="#E9C9A8"/>
+    <circle cx="210" cy="300" r="15" fill="#C99566"/><circle cx="210" cy="300" r="8" fill="#E9C9A8"/>
+    <circle cx="180" cy="328" r="38" fill="#CFA078"/>
+    <ellipse cx="180" cy="342" rx="18" ry="13" fill="#F3DFC8"/>
+    <ellipse cx="180" cy="336" rx="5.5" ry="4" fill="#5E4334"/>
+    <path d="M174 345 q6 6 12 0" fill="none" stroke="#5E4334" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="166" cy="322" r="3.6" fill="#3E2C22"/><circle cx="194" cy="322" r="3.6" fill="#3E2C22"/>
+    <circle cx="167.2" cy="320.8" r="1.1" fill="#fff"/><circle cx="195.2" cy="320.8" r="1.1" fill="#fff"/>
+    <ellipse cx="156" cy="338" rx="7" ry="4.5" fill="#F2A9A3" opacity=".6"/><ellipse cx="204" cy="338" rx="7" ry="4.5" fill="#F2A9A3" opacity=".6"/>
+    <path d="M162 372 l18 8 18 -8 -4 16 -14 -6 -14 6z" fill="#E9C46A"/><circle cx="180" cy="380" r="5" fill="#D9A84A"/>
+  </g>
+  <g class="canasta">
+    <path d="M124 366 h112 l-12 64 a10 10 0 0 1 -10 8 h-68 a10 10 0 0 1 -10 -8z" fill="#D2AB82"/>
+    <g stroke="#B88A5E" stroke-width="1.6" opacity=".8"><path d="M128 386 h104 M131 404 h98 M134 422 h92"/><path d="M150 366 l4 72 M180 366 v72 M210 366 l-4 72"/></g>
+    <rect x="118" y="358" width="124" height="14" rx="7" fill="#C29567"/>
+  </g>
+</svg>
+{%- endmacro %}
+{% macro arcoiris() -%}
+<svg class="arcoiris" viewBox="0 0 400 220" overflow="visible" aria-hidden="true" preserveAspectRatio="xMidYMax meet">
+  <defs><filter id="f-acuarela" filterUnits="userSpaceOnUse" x="-40" y="-40" width="480" height="320"><feGaussianBlur stdDeviation="5"/></filter>
+    <linearGradient id="g-pie" x1="0" y1="0" x2="0" y2="1"><stop offset=".55" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <mask id="m-pie" maskUnits="userSpaceOnUse" x="-40" y="-40" width="480" height="320"><rect x="-40" y="-40" width="480" height="300" fill="url(#g-pie)"/></mask></defs>
+  <g fill="none" stroke-width="18" filter="url(#f-acuarela)" mask="url(#m-pie)" opacity=".55" stroke-linecap="round">
+    <path d="M20 220 a180 180 0 0 1 360 0" stroke="#F6C1C1"/><path d="M38 220 a162 162 0 0 1 324 0" stroke="#F9D6B5"/>
+    <path d="M56 220 a144 144 0 0 1 288 0" stroke="#FBEBB0"/><path d="M74 220 a126 126 0 0 1 252 0" stroke="#CFE8CF"/>
+    <path d="M92 220 a108 108 0 0 1 216 0" stroke="#C6DDF0"/>
+  </g>
+</svg>
+{%- endmacro %}
+{% macro nube(clase) -%}<svg class="nube {{ clase }}" viewBox="0 0 120 60" aria-hidden="true"><path d="M20 50 a16 16 0 0 1 4 -31 a22 22 0 0 1 40 -8 a18 18 0 0 1 30 10 a14 14 0 0 1 6 29z" fill="currentColor"/></svg>{%- endmacro %}
+{% macro estrellas() -%}<svg class="estrellas" viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">{{ estrella(40,120,0.7,0) }}{{ estrella(352,90,0.55,0.8) }}{{ estrella(330,330,0.8,1.6) }}{{ estrella(60,420,0.5,2.2) }}{{ estrella(370,560,0.6,0.4) }}{{ estrella(30,690,0.75,1.2) }}{{ estrella(300,740,0.45,2.6) }}{{ estrella(200,40,0.5,3) }}</svg>{%- endmacro %}
+
+<div class="telon" id="telon" role="dialog" aria-modal="true" aria-labelledby="telon-nombre" data-retardo="900">
+  {{ nube("n1") }}{{ nube("n2") }}{{ estrellas() }}
+  <div class="telon-caja">
+    <div class="telon-globo">{{ osito_globo() }}</div>
+    <p class="telon-hola display" id="telon-nombre">¡Hola, familia!</p>
+    <p class="telon-sub">Tenemos algo muy tierno que contarte</p>
+    <button class="boton" id="abrir" type="button">Abrir invitación</button>
+  </div>
+</div>
+
+<main>
+<header class="portada" id="inicio">
+  {{ estrellas() }}
+  <div class="portada-fondo">{{ arcoiris() }}{{ nube("n1") }}{{ nube("n2") }}{{ nube("n3") }}<div class="globo-flota">{{ osito_globo() }}</div></div>
+  <div class="portada-texto">
+    <p class="antetitulo">{{ evento.titulo }}</p>
+    <h1 class="nombre display" aria-label="{{ nombre }}">{% for palabra in nombre_letras %}<span class="palabra" aria-hidden="true">{% for l in palabra %}<span class="letra">{{ l }}</span>{% endfor %}</span>{% if not loop.last %} {% endif %}{% endfor %}</h1>
+    <div class="fecha-portada">
+      <span class="dia-num">{{ fecha.dia }}</span>
+      <span class="dia-txt"><b>{{ fecha.dia_semana }}</b><span>{{ fecha.mes }} · {{ fecha.anio }}</span></span>
+    </div>
+  </div>
+  <a class="bajar" href="#mensaje" aria-label="Ver la invitación"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M9 3v12M3.5 9.5 9 15l5.5-5.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+</header>
+
+<section class="seccion" id="mensaje">
+  <div class="contenedor tarjeta revela">
+    <p class="texto-grande">{{ textos.mensaje }}</p>
+    {% if familia.padres %}
+    <div class="papas">
+      <p class="papas-label">Con amor, sus papás</p>
+      <p class="papas-nombres display">{{ familia.padres|join(' y ') }}</p>
+    </div>
+    {% endif %}
+    {% if textos.cita %}<blockquote class="cita"><p>{{ textos.cita.texto }}</p>{% if textos.cita.autor %}<footer>{{ textos.cita.autor }}</footer>{% endif %}</blockquote>{% endif %}
+  </div>
+</section>
+
+<section class="seccion" aria-labelledby="t-cuenta">
+  <div class="contenedor revela">
+    <h2 class="titulo display" id="t-cuenta">Ya casi llego</h2>
+    <dl class="cuenta" id="cuenta">
+      <div><dt>días</dt><dd data-u="d">–</dd></div>
+      <div><dt>horas</dt><dd data-u="h">–</dd></div>
+      <div><dt>minutos</dt><dd data-u="m">–</dd></div>
+      <div><dt>segundos</dt><dd data-u="s">–</dd></div>
+    </dl>
+    <p class="cuenta-fin texto-grande" id="cuenta-fin" hidden>¡Hoy es el gran día!</p>
+  </div>
+</section>
+
+{% if familia.padrinos %}
+<section class="seccion" aria-labelledby="t-familia">
+  <div class="contenedor revela">
+    <h2 class="titulo display" id="t-familia">Mis padrinos</h2>
+    <p class="padrinos">{{ familia.padrinos|join('<br>'|safe) }}</p>
+  </div>
+</section>
+{% endif %}
+
+<section class="seccion" aria-labelledby="t-momentos">
+  <div class="contenedor">
+    <h2 class="titulo display revela" id="t-momentos">¿Dónde y cuándo?</h2>
+    {% for m in momentos %}
+    <div class="momento tarjeta revela">
+      <p class="momento-hora" aria-label="{{ m.hora_texto }} {{ m.ampm_texto }}">{{ m.hora_texto }} <small>{{ m.ampm }}</small></p>
+      <p class="momento-lugar">{{ m.lugar }}</p>
+      {% if m.direccion %}<p class="momento-dir">{{ m.direccion }}</p>{% endif %}
+      <div class="momento-acciones">
+        <a class="boton" href="{{ m.mapa }}" target="_blank" rel="noopener">Ver ubicación</a>
+        <a class="boton boton-sec" href="#" target="_blank" rel="noopener" data-calendario="{{ loop.index0 }}">Agregar al calendario</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% if regalos %}
+<section class="seccion regalo" aria-labelledby="t-regalos">
+  <div class="contenedor revela">
+    <h2 class="titulo display" id="t-regalos">Un detalle para mí</h2>
+    <p class="texto-grande">{{ regalos.texto }}</p>
+    {% if regalos.sugerencias %}
+    <div class="sugerencias">
+      {% for s in regalos.sugerencias %}
+      <div class="sugerencia tarjeta">
+        {% if 'pañal' in s|lower %}<svg viewBox="0 0 80 64" aria-hidden="true"><path d="M8 14 h64 v10 c0 20 -14 34 -32 34 S8 44 8 24z" fill="#FCE8E6" stroke="#D99A93" stroke-width="2"/><path d="M8 14 h64 v10 H8z" fill="#fff" stroke="#D99A93" stroke-width="2"/><circle cx="20" cy="19" r="3" fill="#F2C4C4"/><circle cx="60" cy="19" r="3" fill="#F2C4C4"/><path d="M28 36 q12 8 24 0" fill="none" stroke="#D99A93" stroke-width="2" stroke-linecap="round" opacity=".6"/></svg>
+        {% elif 'pañit' in s|lower or 'toallit' in s|lower %}<svg viewBox="0 0 80 64" aria-hidden="true"><rect x="10" y="22" width="60" height="32" rx="10" fill="#E3EEF7" stroke="#86A9C8" stroke-width="2"/><path d="M30 22 c0 -8 4 -14 10 -14 s10 6 10 14" fill="#fff" stroke="#86A9C8" stroke-width="2"/><rect x="28" y="30" width="24" height="8" rx="4" fill="#BCD3E6"/></svg>
+        {% else %}<svg viewBox="0 0 80 64" aria-hidden="true"><rect x="14" y="24" width="52" height="32" rx="6" fill="#FBEBB0" stroke="#D9B45A" stroke-width="2"/><rect x="10" y="18" width="60" height="10" rx="4" fill="#F9D6B5" stroke="#D9B45A" stroke-width="2"/><path d="M40 18 v38" stroke="#D9B45A" stroke-width="2"/><path d="M40 18 c-10 -14 -22 -4 -10 0 M40 18 c10 -14 22 -4 10 0" fill="none" stroke="#D9B45A" stroke-width="2"/></svg>{% endif %}
+        <p>{{ s }}</p>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% if regalos.nota %}<p class="nota-regalo">{{ regalos.nota }}</p>{% endif %}
+    {% if regalos.link %}<a class="boton" href="{{ regalos.link }}" target="_blank" rel="noopener">Ver lista de regalos</a>{% endif %}
+  </div>
+</section>
+{% endif %}
+
+{% if vestimenta or avisos %}
+<section class="seccion" aria-labelledby="t-tener">
+  <div class="contenedor revela">
+    <h2 class="titulo display" id="t-tener">Ten en cuenta</h2>
+    {% if vestimenta %}<p class="nivel">Código de vestimenta: <b>{{ vestimenta.nivel_texto }}</b></p>{% if vestimenta.nota %}<p class="suave">{{ vestimenta.nota }}</p>{% endif %}{% endif %}
+    {% if avisos %}<div class="avisos">{% for a in avisos %}<p>{{ a }}</p>{% endfor %}</div>{% endif %}
+  </div>
+</section>
+{% endif %}
+
+{% if ev.hashtag %}
+<section class="seccion" aria-labelledby="t-hashtag">
+  <div class="contenedor revela">
+    <h2 class="titulo display" id="t-hashtag">Comparte tus fotos</h2>
+    <button class="hashtag" type="button">{{ ev.hashtag }}</button>
+    <p class="hashtag-estado" aria-live="polite">Toca el hashtag para copiarlo.</p>
+  </div>
+</section>
+{% endif %}
+
+<section class="seccion confirmar" id="confirmar" aria-labelledby="t-confirmar">
+  <div class="contenedor tarjeta revela">
+    <h2 class="titulo display" id="t-confirmar">¿Nos acompañas?</h2>
+    <p class="limite">Confirma tu asistencia antes del {{ fecha.limite }}.</p>
+    {% if ev.confirmacion.metodo == 'whatsapp' %}
+    <label class="rsvp-nombre"><span>Tu nombre</span><input type="text" id="rsvp-nombre" autocomplete="name" maxlength="60" placeholder="Ej. Tía Marta y Jorge"></label>
+    <div class="cupos">
+      <p class="cupos-label">¿Cuántos vienen?<small id="cupos-nota">Cuéntate tú también.</small></p>
+      <div class="contador">
+        <button type="button" id="cupos-menos" aria-label="Uno menos">−</button>
+        <output id="cupos-n" aria-live="polite">1</output>
+        <button type="button" id="cupos-mas" aria-label="Uno más">+</button>
+      </div>
+    </div>
+    <div class="confirmar-acciones">
+      <a class="boton" href="https://wa.me/{{ ev.confirmacion.whatsapp|replace(" ", "")|replace("+", "") }}" target="_blank" rel="noopener" id="confirmar-si">Confirmar por WhatsApp</a>
+      <a class="boton boton-sec" href="https://wa.me/{{ ev.confirmacion.whatsapp|replace(" ", "")|replace("+", "") }}" target="_blank" rel="noopener" id="confirmar-no">No podré ir</a>
+    </div>
+    {% else %}
+    <div class="confirmar-acciones"><a class="boton" href="{{ ev.confirmacion.link }}" target="_blank" rel="noopener">Confirmar asistencia</a></div>
+    {% endif %}
+  </div>
+</section>
+
+<section class="seccion cierre" aria-label="Despedida">
+  <div class="contenedor revela">
+    <div class="cierre-globo">{{ osito_globo() }}</div>
+    <p class="texto-grande">{{ textos.cierre }}</p>
+    <p class="firma display">{{ nombre_corto }}</p>
+  </div>
+</section>
+</main>
+
+<footer class="pie">
+  <p>Invitación hecha por <a href="https://kcdigitalmagic.com" target="_blank" rel="noopener">KC Digital Magic</a></p>
+</footer>
+
+<a class="boton flotante" href="#confirmar">Confirmar asistencia</a>
+
+<script type="application/json" id="datos">{{ datos_js|tojson }}</script>
+<script>
+{{ js|safe }}
+</script>
+</body>
+</html>
