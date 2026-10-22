@@ -7,6 +7,16 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
+# Si la rama ya la maneja la automatización (repositorio privado kc-basic-eventos con las
+# invitaciones de clientes), publicar desde aquí las borraría.
+git fetch -q origin publicado 2>/dev/null || true
+if git cat-file -e origin/publicado:.kc-automatico 2>/dev/null && [ "${1:-}" != "--forzar-borrando-clientes" ]; then
+  echo "✗ La publicación ahora es automática (GitHub Actions de kc-basic-eventos)." >&2
+  echo "  Sube tus cambios a main y ejecuta allí «Publicar invitaciones» (Actions → Run workflow)," >&2
+  echo "  o espera la publicación diaria de las 6 a. m." >&2
+  exit 1
+fi
+
 python3 scripts/validar.py eventos/*.json
 rm -rf dist
 python3 scripts/generar.py eventos/*.json "$@"
