@@ -232,16 +232,36 @@ def imagen_og_simple(ev, tema, nombre, fecha):
     return buf.getvalue()
 
 
+def _norma(t):
+    """Para comparar títulos sin que importen mayúsculas, tildes, signos ni espacios."""
+    import html as _html
+    import unicodedata
+    t = unicodedata.normalize("NFD", _html.unescape(t)).lower()
+    t = "".join(c for c in t if unicodedata.category(c) != "Mn")
+    t = re.sub(r"[¿?¡!.,:;\"'«»]", " ", t)
+    return " ".join(t.split())
+
+
 def aplicar_reemplazos(html, reemplazos):
-    """Cambios de títulos pedidos por el cliente: cambia el texto completo de un elemento
-    (ej. el título «Qué ponerte» → «Dress code»). Solo toca elementos cuyo texto es exactamente ese."""
+    """Cambios de títulos pedidos por el cliente: cambia el texto completo de un título o etiqueta
+    (ej. «Qué ponerte» → «Dress code»). No importan mayúsculas, tildes ni signos al escribir el texto actual."""
     from markupsafe import escape
+    patron = re.compile(r"(<(h[1-6]|p|span|dt|small|b|button|a|blockquote)\b[^>]*>)([^<]+)(</\2>)")
     for r in reemplazos:
-        de, a = str(escape(r["de"].strip())), str(escape(r["a"].strip()))
-        patron = re.compile(r"(<(h[1-6]|p|span|dt|small|b|button|a)\b[^>]*>)\s*" + re.escape(de) + r"\s*(</\2>)")
-        html, n = patron.subn(lambda m: m.group(1) + a + m.group(3), html)
-        if not n:
-            raise ValueError(f"cambio de título: no encontré el texto «{r['de']}» en la invitación (cópialo tal cual aparece)")
+        objetivo, nuevo = _norma(r["de"]), str(escape(r["a"].strip()))
+        cuenta = 0
+
+        def cambiar(m):
+            nonlocal cuenta
+            if _norma(m.group(3)) == objetivo:
+                cuenta += 1
+                return m.group(1) + nuevo + m.group(4)
+            return m.group(0)
+
+        html = patron.sub(cambiar, html)
+        if not cuenta:
+            raise ValueError(f"cambio de títulos: no encontré «{r['de']}» en esta invitación. "
+                             "Copia el título tal como se ve (la lista de títulos está en el mapa de procesos)")
     return html
 
 
