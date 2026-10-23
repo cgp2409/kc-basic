@@ -15,6 +15,7 @@ var RAMA = "main";
 var CARPETA_BASIC = "1jhk8EizmAyKR1dv6R0qyDT8Nvs_J0gXx"; // Drive › invitaciones › basic
 var BASE_URL = "https://basic.kcdigitalmagic.com/";
 var HOJA = "Formulario";
+var COL_TITULOS = "Cambios de títulos";
 
 var DISENOS = {
   "Moderna · Noche dorada": ["xv-moderna-poster", "noche-dorada"],
@@ -102,6 +103,12 @@ function generarInvitacion() {
   var textos = hoja.getRange(fila, 1, 1, ancho).getDisplayValues()[0];
   var col = {};
   titulos.forEach(function (t, i) { col[t.trim()] = i; });
+  if (col[COL_TITULOS] === undefined) {
+    // Crea la columna «Cambios de títulos» la primera vez (al final de la hoja)
+    hoja.getRange(1, ancho + 1).setValue(COL_TITULOS).setBackground("#8E2A7E").setFontColor("#FFFFFF").setFontWeight("bold");
+    hoja.getRange(1, ancho + 1).setNote("Cambios separados por punto y coma: texto actual = texto nuevo\nEj.: Con mi familia = Con la bendición de Dios; Qué ponerte = Dress code");
+    col[COL_TITULOS] = ancho; valores.push(""); textos.push("");
+  }
   var celda = function (titulo) {
     var i = col[titulo];
     if (i === undefined) throw new Error("No encuentro la columna «" + titulo + "». ¿Le cambiaron el nombre?");
@@ -266,6 +273,18 @@ function armarEvento(celda, tz, enlaceActual) {
   var desp = null;
   if (f) { var d = new Date(f + "T12:00:00Z"); d.setUTCDate(d.getUTCDate() + 5); desp = Utilities.formatDate(d, "UTC", "yyyy-MM-dd"); }
 
+  // Cambios de títulos: una línea por cambio, «texto actual = texto nuevo»
+  var reemplazos = [];
+  t(COL_TITULOS).split(/\n+|;/).forEach(function (linea) {
+    if (!linea.trim()) return;
+    var partes = linea.split(/\s*(?:=|→|->)\s*/);
+    if (partes.length !== 2 || !partes[0].trim() || !partes[1].trim()) {
+      errores.push("Cambios de títulos: escribe cada cambio así «Qué ponerte = Dress code» (revisa: «" + linea.trim() + "»)");
+    } else {
+      reemplazos.push({ de: partes[0].trim(), a: partes[1].trim() });
+    }
+  });
+
   var ev = {
     slug: slug, tipo: "xv",
     plantilla: diseno ? diseno[0] : null, tema: diseno ? diseno[1] : null,
@@ -285,6 +304,7 @@ function armarEvento(celda, tz, enlaceActual) {
     hashtag: hashtag || null,
     confirmacion: { metodo: metodo, whatsapp: wa, link: link, fecha_limite: limite },
     cierre: frase("Frase de cierre", true) || {},
+    reemplazos: reemplazos,
     addons: []
   };
   return { evento: ev, errores: errores };

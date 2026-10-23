@@ -189,6 +189,16 @@ def validar(ev):
     if tag and not re.match(r"^#\w+$", tag):
         val.error("hashtag", "empieza con # y sin espacios")
 
+    reemplazos = ev.get("reemplazos") or []
+    if not isinstance(reemplazos, list) or len(reemplazos) > 10:
+        val.error("reemplazos", "lista de máximo 10 cambios de títulos")
+    else:
+        for r in reemplazos:
+            if not (isinstance(r, dict) and str(r.get("de", "")).strip() and str(r.get("a", "")).strip()):
+                val.error("reemplazos", "cada cambio necesita el texto actual y el nuevo")
+            elif len(r["a"]) > 60:
+                val.error("reemplazos", f"«{r['a'][:20]}…»: máximo 60 caracteres")
+
     # --- Confirmación ----------------------------------------------------
     conf = ev.get("confirmacion") or {}
     metodo = conf.get("metodo")

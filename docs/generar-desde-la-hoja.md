@@ -22,7 +22,8 @@ Los datos de clientes nunca entran al repositorio público.
 3. kc-basic-eventos → Settings → Secrets and variables → Actions → New repository secret:
    nombre `KC_PUBLICAR_TOKEN`, valor: el token.
 4. En un computador: hoja «KC Basic · Pedidos» → Extensiones → Apps Script → borrar todo,
-   pegar google/kc_basic_menu.gs, guardar. Recargar la hoja.
+   pegar google/kc_basic_cargador.gs, guardar. Recargar la hoja. El cargador trae solo la
+   versión más reciente de google/kc_basic_menu.gs: las mejoras no requieren volver a pegar nada.
 5. Menú KC Basic → Configurar GitHub (una vez) → pegar el mismo token. Google pide permisos
    la primera vez (Continuar → elegir la cuenta → Permitir). El script prepara el repositorio.
 
@@ -30,3 +31,11 @@ Los datos de clientes nunca entran al repositorio público.
 scripts/publicar.sh ya no se usa una vez activa la automatización (se niega para no borrar
 las invitaciones de clientes). Sube los cambios a main de kc-basic y ejecuta
 kc-basic-eventos → Actions → Publicar invitaciones → Run workflow, o espera la corrida diaria.
+
+## Cambios que pide el cliente
+- Datos (nombres, horas, lugares, textos, fotos): se corrigen en la fila (o en la carpeta de
+  fotos) y se vuelve a Generar. El enlace no cambia.
+- Títulos fijos del diseño («Qué ponerte», «Con mi familia», «Mis padrinos»…): columna
+  **Cambios de títulos**, separados por punto y coma:
+  `Con mi familia = Con la bendición de Dios; Qué ponerte = Dress code`.
+  El texto actual se copia tal cual aparece en la invitación; si no existe, la hoja avisa.

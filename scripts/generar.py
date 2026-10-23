@@ -232,6 +232,19 @@ def imagen_og_simple(ev, tema, nombre, fecha):
     return buf.getvalue()
 
 
+def aplicar_reemplazos(html, reemplazos):
+    """Cambios de títulos pedidos por el cliente: cambia el texto completo de un elemento
+    (ej. el título «Qué ponerte» → «Dress code»). Solo toca elementos cuyo texto es exactamente ese."""
+    from markupsafe import escape
+    for r in reemplazos:
+        de, a = str(escape(r["de"].strip())), str(escape(r["a"].strip()))
+        patron = re.compile(r"(<(h[1-6]|p|span|dt|small|b|button|a)\b[^>]*>)\s*" + re.escape(de) + r"\s*(</\2>)")
+        html, n = patron.subn(lambda m: m.group(1) + a + m.group(3), html)
+        if not n:
+            raise ValueError(f"cambio de título: no encontré el texto «{r['de']}» en la invitación (cópialo tal cual aparece)")
+    return html
+
+
 # ------------------------------------------------------------------ contexto
 def construir(ev, fotos_dir, autonomo, demo, para_demo=None, cupos_demo=None):
     tema = CATALOGO["temas"][ev["tema"]]
@@ -336,6 +349,7 @@ def construir(ev, fotos_dir, autonomo, demo, para_demo=None, cupos_demo=None):
     }
     env = Environment(loader=FileSystemLoader(str(plantilla_dir)), autoescape=select_autoescape(["j2", "html"]))
     html = env.get_template("plantilla.html.j2").render(**ctx)
+    html = aplicar_reemplazos(html, ev.get("reemplazos") or [])
     return html, archivos, og
 
 
@@ -385,7 +399,7 @@ def main():
         fotos_dir = a.fotos or (RAIZ / "fotos" / ev["slug"])
         try:
             html, archivos, og = construir(ev, fotos_dir, bool(a.autonomo), a.demo, a.para_demo, a.cupos_demo)
-        except FileNotFoundError as e:
+        except (FileNotFoundError, ValueError) as e:
             print(f"✗ {ruta}: {e}")
             fallos += 1
             continue
