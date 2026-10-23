@@ -27,3 +27,13 @@ function kc_() {
   }
   return new Function(codigo + "\nreturn { generarInvitacion: generarInvitacion, configurarGithub: configurarGithub };")();
 }
+
+/* No se ejecuta nunca. Google decide qué permisos pedir leyendo este archivo; como el menú
+   real se descarga, aquí se nombran los servicios que usa para que los permisos se pidan bien. */
+function permisos_() {
+  SpreadsheetApp.getActiveSpreadsheet().getActiveSheet().getActiveRange();
+  DriveApp.getFolderById("x").createFolder("x");
+  PropertiesService.getScriptProperties();
+  UrlFetchApp.fetch("https://api.github.com");
+  Utilities.unzip(Utilities.newBlob(""));
+}
