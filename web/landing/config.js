@@ -21,7 +21,7 @@ window.SITE = {
   whatsappMensaje: "Hola, vi su página y quiero información para mi evento",
   email: "contacto@kcdigitalmagic.com",
   instagram: "https://www.instagram.com/kcdigitalmagic",
-  facebook: "https://www.facebook.com/kcdigitalmagic",
+  facebook: "https://www.facebook.com/profile.php?id=61562548356893",
   blog: "https://kcdigitalmagic.com/blog?utm_source=landing&utm_medium=web&utm_campaign=footer",
   botonWhatsappFlotante: true,                    // botón flotante en celular (true / false)
 
