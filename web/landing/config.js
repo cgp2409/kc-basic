@@ -19,7 +19,7 @@ window.SITE = {
   whatsapp: "573104036208",                       // solo números, con código de país
   whatsappTexto: "+57 310 403 6208",              // cómo se ve en el pie de página
   whatsappMensaje: "Hola, vi su página y quiero información para mi evento",
-  email: "contacto@kcdigitalmagic.com",
+  email: "",                                      // vacío = no se muestra correo en el pie
   instagram: "https://www.instagram.com/kcdigitalmagic",
   facebook: "https://www.facebook.com/profile.php?id=61562548356893",
   blog: "https://kcdigitalmagic.com/blog?utm_source=landing&utm_medium=web&utm_campaign=footer",

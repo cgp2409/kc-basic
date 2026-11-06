@@ -237,7 +237,7 @@
     var F = S.pie;
     return '<footer class="footer"><div class="wrap"><div class="f-grid">' +
       '<div class="f-col"><div class="f-marca">' + sello("") + "<span>" + esc(S.marca) + '</span></div><p class="f-desc">' + esc(F.descripcion) + "</p></div>" +
-      '<div class="f-col"><h5>' + esc(F.tituloContacto) + "</h5><a " + wa("footer") + ">WhatsApp " + esc(S.whatsappTexto) + '</a><a href="mailto:' + esc(S.email) + '">' + esc(S.email) + "</a></div>" +
+      '<div class="f-col"><h5>' + esc(F.tituloContacto) + "</h5><a " + wa("footer") + ">WhatsApp " + esc(S.whatsappTexto) + "</a>" + (S.email ? '<a href="mailto:' + esc(S.email) + '">' + esc(S.email) + "</a>" : "") + "</div>" +
       '<div class="f-col"><h5>' + esc(F.tituloSiguenos) + '</h5><a href="' + esc(S.instagram) + '" target="_blank" rel="noopener">Instagram</a><a href="' + esc(S.facebook) + '" target="_blank" rel="noopener">Facebook</a><a href="' + esc(S.blog) + '">Blog</a></div>' +
       '<div class="f-col"><h5>' + esc(F.tituloPaises) + "</h5><span>" + esc(F.paises) + "</span></div>" +
       '</div><div class="f-copy"><span>' + esc(F.copyright) + "</span>" + (F.legales || []).map(function (l) { return '<a href="' + esc(l.enlace) + '">' + esc(l.texto) + "</a>"; }).join("") + "</div></div></footer>" +
