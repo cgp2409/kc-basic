@@ -15,7 +15,7 @@ window.SITE = {
   /* ---------- 1. GENERAL Y CONTACTO ---------- */
   marca: "KC Digital Magic",
   siglas: "KC",                                   // texto del sello/logo redondo
-  logo: "",                                       // opcional: "img/logo.png" (reemplaza el sello KC)
+  logo: "https://kcdigitalmagic.com/wp-content/uploads/2026/11/kc-logo-256.png", // logo del sobre (web/marca); vacío = sello KC
   whatsapp: "573104036208",                       // solo números, con código de país
   whatsappTexto: "+57 310 403 6208",              // cómo se ve en el pie de página
   whatsappMensaje: "Hola, vi su página y quiero información para mi evento",
